@@ -1,0 +1,116 @@
+\appendix
+
+\chapter{Fock space}
+
+The symmetric Fock space is the Hilbert space used in the construction of our quantum field theory in curved spacetimes for a scalar field. However, it must be constructed from a existent Hilbert space, that physically can have the interpretation of the space of one particle.
+
+Let \(\mcH\) be a Hilbert space, then the Fock space associated to it, \(\mcF(\mcH)\), is defined as
+\begin{equation}
+    \mcF(\mcH)\equiv\oplus_{n=0}^{\infty}\left(\otimes^{n}\mcH\right).
+\end{equation}
+
+Therefore, an element \(\Psi\in\mcF(\mcH)\) is infinite dimension vector whose each entry is a tensor product of elements of \(\mcH\), i.e.,
+\begin{equation}
+    \Psi=\left(\psi,\psi^a,\psi^{ab},\dots\right),
+\end{equation}
+where
+\begin{equation}
+    \psi^{a_1\dots a_j}\in\otimes^j\mcH.
+\end{equation}
+
+The symmetric Fock space, \(\mcF_S(\mcH)\), is defined as
+\begin{equation}
+    \mcF_S(\mcH)\equiv\oplus_{n=0}^{\infty}\left(\otimes^{n}_S\mcH\right),
+\end{equation}
+that is very similar to the ordinary Fock space, however, the possible entries must be symmetric, i.e.,
+\begin{equation}
+    \psi^{a_1\dots a_j}=\psi^{(a_1\dots a_j)}.
+\end{equation}
+
+In order to the Fock space be a Hilbert space, we equip it with inner product that act in two elements \(\Psi,\Phi\in\mcF_S(\mcH)\) as
+\begin{equation}
+    \langle\Psi,\Phi\rangle_{\mcF_S}\equiv\overline{\psi}\phi+\overline{\psi}_a\phi^a+\dots,
+\end{equation}
+in which the elements \(\overline{\psi}_a\) are the dual vectors correspondent to the conjugated one in \(\overline{\mcH}\).
+
+\subsection*{Algebra of operators}
+Now, we define the annihilation and creation operators in the Fock space. Let \(\xi^a\in\mcH\), then the annihilation operator \(a(\overline{\xi}):\mcF_S(\mcH)\to\mcF_S(\mcH)\) is defined as
+\begin{equation}
+    a(\overline{\xi})\Psi\equiv\left(\overline{\xi}_{a_1}\psi^{a_1},\sqrt{2}\overline{\xi}_{a_1}\psi^{a_1a_2},\sqrt{3}\overline{\xi}_{a_1}\psi^{a_1a_2a_3},\dots\right).
+\end{equation}
+
+Similarly, the creation operator \(a^{\dagger}(\xi):\mcF_S(\mcH)\to\mcF_S(\mcH)\) is defined as
+\begin{equation}
+    a^{\dagger}(\xi)\Psi\equiv\left(0,\psi\xi^a,\sqrt(2)\xi^{(a_1}\psi^{a_2)},\sqrt{3}\xi^{(a_1}\psi^{a_2a_3)},\dots\right).
+\end{equation}
+
+\begin{proposition}\label{prop:ccr}
+    Let \(\xi,\eta\in\mcH\), then the annihilation and creation operators has commutation relation given by
+    \begin{equation}
+        [a(\overline{\xi}),a(\overline{\eta})]=[a^{\dagger}(\xi),a^{\dagger}(\eta)]=0
+    \end{equation}
+    and
+    \begin{equation}
+        [a(\overline{\xi}),a^{\dagger}(\eta)]=\overline{\xi}_a\eta^a\mathbb{I}.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    We shall restric our proof to the first two non-trivial termos. Using our definitions, we have
+    \begin{equation}
+        a(\overline{\xi})a(\overline{\eta})\Psi=\left(\sqrt{2}\overline{\xi}_{a_2}\overline{\eta}_{a_1}\psi^{a_1a_2},\sqrt{6}\overline{\xi}_{a_2}\overline{\eta}_{a_1}\psi^{a_1a_2a_3},\dots\right).
+    \end{equation}
+
+    Similarly, we have
+    \begin{equation}
+        a(\overline{\eta})a(\overline{\xi})\Psi=\left(\sqrt{2}\overline{\eta}_{a_2}\overline{\xi}_{a_1}\psi_2^{a_1a_2},\sqrt{6}\overline{\eta}_{a_2}\overline{\xi}_{a_1}\psi_3^{a_1a_2a_3},\dots\right).
+    \end{equation}
+
+    However, from the Fock space symmetry,
+    \begin{equation}
+        \overline{\xi}_{a_2}\overline{\eta}_{a_1}\psi_2^{a_1a_2}=\overline{\eta}_{a_2}\overline{\xi}_{a_1}\psi_2^{a_1a_2}\;\;\;\text{and}\;\;\;\overline{\xi}_{a_2}\overline{\eta}_{a_1}\psi_3^{a_1a_2a_3}=\overline{\eta}_{a_2}\overline{\xi}_{a_1}\psi_3^{a_1a_2a_3}.
+    \end{equation}
+
+    Arguments exploring the symmetry also holds for the other components. Since it is applied in an arbitrary vector \(\Psi\), is evident that the commutator vanishes. 
+    Similarly, from the definition of creation operator, we have
+    \begin{equation}
+        \begin{aligned}
+            &a^{\dagger}(\xi)a^{\dagger}(\eta)\Psi=\left(0,0,\sqrt{2}\psi\xi^{(a_1}\eta^{a_2)},\sqrt{6}\xi^{(a_1}\eta^{a_2}\psi^{a_3)},\dots\right)\\
+            &a^{\dagger}(\eta)a^{\dagger}(\xi)\Psi=\left(0,0,\sqrt{2}\psi\eta^{(a_1}\xi^{a_2)},\sqrt{6}\eta^{(a_1}\xi^{a_2}\psi^{a_3)},\dots\right)
+        \end{aligned}.
+    \end{equation}
+
+    Again, invoking the symmmetry of the Fock space, we have
+    \begin{equation}
+        \psi_0\xi^{(a_1}\eta^{a_2)}=\psi_0\eta^{(a_1}\xi^{a_2)}\;\;\;\text{and}\;\;\;\xi^{(a_1}\eta^{a_2}\psi_1^{a_3)}=\eta^{(a_1}\xi^{a_2}\psi_1^{a_3)}.
+    \end{equation}
+
+    With the same strategies for the other components, we find that the commutator of creation operators are null.
+
+    Finally, the elements for the last commutator are
+    \begin{subequations}
+        \begin{align}
+            &a(\overline{\xi})a^{\dagger}(\eta)\Psi=\left(\psi\overline{\xi}_a\eta^a,2\overline{\xi}_a\eta^{(a}\psi^{a_2)},3\overline{\xi}_a\eta^{(a}\psi^{a_1a_2),\dots}\right)\\
+            &a^{\dagger}(\eta)a(\overline{\xi})\Psi=\left(0,\overline{\xi}_a\psi^a\eta^{a_1},2\overline{\xi}_a\psi^{a(a_1}\eta^{a_2)},\dots\right).
+        \end{align}
+    \end{subequations}
+
+    Notice that
+    \begin{equation}
+        2\overline{\xi}_a\eta^{(a}\psi^{a_1)}=\overline{\xi}_a\eta^a\psi^{a_1}+\overline{\xi}_a\psi^a\eta^{a_1}
+    \end{equation}
+    and
+    \begin{subequations}
+        \begin{align}
+            3\overline{\xi}_{a_1}\eta^{(a_1}\psi^{a_2a_3)}&=\frac{1}{2}\overline{\xi}_a[\eta^{a_1}\psi^{a_2a_3}+\eta^{a_1}\psi^{a_3a_2}+\eta^{a_2}\psi^{a_1a_3}\\
+            &+\eta^{a_2}\psi^{a_3a_1}+\eta^{a_3}\psi^{a_1a_2}+\eta^{a_3}\psi^{a_2a_1}]\\
+            &=\overline{\xi}_{a_1}\eta^{a_1}\psi^{(a_2a_3)}+\overline{\xi}_{a_1}\left[\psi^{a_1a_3}\eta^{a_2}+\psi^{a_1a_2}\eta^{a_3}\right]\\
+            &=\overline{\xi}_{a_1}\eta^{a_1}\psi_2^{(a_2a_3)}+2\overline{\xi}_{a_1}\psi_2^{(a_1a_2}\eta^{a_3)}.
+        \end{align}
+    \end{subequations}
+
+    Thus, if we procede with similar manipulations for the other components, we find that
+    \begin{equation}
+        [a(\overline{\xi}),a^{\dagger}(\eta)]\Psi=\overline{\xi}_a\eta^a\Psi,
+    \end{equation}
+    that proves the desired relations.
+\end{proof}

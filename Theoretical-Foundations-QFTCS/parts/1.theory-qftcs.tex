@@ -1,0 +1,689 @@
+\cleardoublepage
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+\part{Quantum field theory in curved spacetimes}
+
+\chapter{Geometric quantum mechanics}
+\pagestyle{fancy}
+Throught this chapter we shall develop the necessary aspects of classical and quantum theory in geometric picture. Moreover, we apply this construction to a famous linear system: \(N\) decoupled harmonic oscillators.
+
+\section{Classical theory}
+\subsection*{Geometric formulation}
+In Hamiltonian classical mechanics, the space of study is \(2n\)-dimensional manifold \(\mcP\) called phase space whose points are determined by \(n\) generalized coordinates \((q^1,\dots,q^n)\) and their conjugated momenta \((p_1,\dots,p_n)\). Each system has an associated Hamiltonian function \(H=H(q^1,\dots,q^n;p_1,\dots,p_n)\) that provides the time evolution of the system by Hamilton equations
+\begin{equation}
+    \diff{q^{\mu}}{t}=\diffp{H}{p_{\mu}}\hspace{5mm}\text{and}\hspace{5mm}\diff{p_{\mu}}{t}=-\diffp{H}{q^\mu}.
+    \label{eq:hamilton}
+\end{equation}
+
+To put the coordinates of phase space in the same level, we define the \(2n\)-component object 
+\begin{equation}
+    y\equiv\left(q^1,\dots,q^n;p_1,\dots,p_n\right).
+\end{equation}
+
+Moreover, we also define a \(2n\times 2n\) object, \(\Omega^{ij}\), with components given by
+\begin{equation}
+    \Omega^{ij}=
+    \begin{pmatrix}
+        0_n&\bbI_n\\
+        -\bbI_n&0_n
+    \end{pmatrix},
+\end{equation}
+then, we are able to write the Hamilton's equations as
+\begin{equation}
+    \diff{y^\mu}{t}=\sum_{\nu=1}^{2n}\Omega^{\mu\nu}\diffp{H}{y^{\nu}}.
+\end{equation}
+
+Inspired by this manipulation, in a more abstract formulation, a system with \(n\) degrees of freedom is represented by points in the \(2n\)-dimensional manifold \(\mcP\) with a sympletic form \(\Omega_{ab}\), i.e., a 2-form that is non-degenerated and closed in \(\mcP\). Mathematically, this is statement is equivalent to
+\begin{enumerate}
+    \item \(\Omega_{ab}=\Omega_{[ab]}\).
+    \item \(\nabla_{[a}\Omega_{bc]}=0\).
+    \item For every tagent vector \(v^b\) on \(\mcP\), we have
+    \begin{equation}
+        v^b\Omega_{ab}=0\iff v^b=0.
+    \end{equation}
+\end{enumerate}
+
+Since the form is non-degenerated, it has an inverse, \(\Omega^{ab}\), defined by the relation
+\begin{equation}
+    \Omega^{ab}\Omega_{bc}=\delta^a_c.
+\end{equation}
+
+From the Hamiltonian function, we define the hamiltonian vector field, \(h^a\), by
+\begin{equation}
+    h^a\equiv\Omega^{ab}\nabla_bH.
+\end{equation}
+Thereby, in the abstract formulation, the dynamics are such that the possible physical paths are the ones that follows the orbits of \(h^a\).
+
+To relate both formulations, we pick a \(n\)-dimensional manifold \(\mcQ\) with local coodinates an take \(\mcP=T_*(\mcQ)\), i.e., the cotangent bundle of \(\mcQ\) formed by the points of \(\mcQ\) and the cotagent vectors at each point. Therefore, the sympletic form, expressed as a function of local coordinates, can be defined as 
+\begin{equation}
+    \Omega_{ab}=2\sum_{\mu}\left(\nabla p_{\mu}\right)_{[a}\left(\nabla q^{\mu}\right)_{b]},
+    \label{eq:omegapq}
+\end{equation}
+or
+\begin{equation}
+    \Omega=\sum_{\mu}\mathrm{d}p_{\mu}\wedge\mathrm{d}q_{\mu}.
+\end{equation}
+
+Even though we constructed the form using a choice of coordinates, it is coordinate independent\sn{show it!}.
+
+In order to have equivalent constructions (conventional and abstract), they must lead the same dynamical equations for the system. Notice that it indeed hols\sn{show it!}.
+
+Thus, the abstract formulation provides coordinate independet equations of motion. Moreover, notice that we can identify the manifold \(\mcP\) with the solution space \(\mcS\) associating each \(y\in\mcP\) with the solution whose initial conditions is given by that configuration.
+
+Now, remember that physical observables in Hamiltonian mechanics is given by smooth function acting on the phase space, \(f\in\smooth:\mcP\to\bbR\). These observables have algebric structure given by the Poisson brackets. For \(f,g:\mcP\to\bbR\), it is defined as
+\begin{equation}
+    \{f,g\}\equiv\Omega^{ab}\nabla_af\nabla_bg.
+\end{equation}
+
+The calculation of the Poisson brackets for the fundamentals observables \((q^{\mu},p_{\nu})\) follows:
+\begin{subequations}\label{eq:poisson1}
+    \begin{align}
+        \{q^{\mu},q^{\nu}\}&=\Omega^{ab}\nabla_aq^{\mu}\nabla_bq^{\nu}\\
+        &=\Omega^{ab}\sum_\mu\nabla_aq^{\mu}\nabla_bq^{\mu}\delta^\nu_\mu\\
+        &=\sum_{\mu}\Omega^{[ab]}\nabla_{(a}q^{\mu}\nabla_{b)}q^{\mu}\delta^{\nu}_\mu\\
+        &=0.
+    \end{align}
+\end{subequations}
+
+Similarly, 
+\begin{subequations}\label{eq:poisson2}
+    \begin{align}
+        \{p_{\mu},p_{\nu}\}&=\Omega^{ab}\nabla_ap_{\mu}\nabla_bp_{\nu}\\
+        &=\Omega^{ab}\sum_\mu\nabla_aq^{\mu}\nabla_bq_{\mu}\delta_\nu^\mu\\
+        &=\sum_{\mu}\Omega^{[ab]}\nabla_{(a}p_{\mu}\nabla_{b)}p_{\mu}\delta^{\mu}_\nu\\
+        &=0.
+    \end{align}
+\end{subequations}
+
+At last, we have
+\begin{equation}\label{eq:poisson3}
+    \{q^{\mu},p_{\nu}\}=?
+\end{equation}
+
+\subsection*{Linear dynamical systems}
+Henceforth, we shall restrict our analysis to system that are linear in order to have additional structures in our construction. More specifically, we consider systems that satisfies the following conditions:
+\begin{enumerate}
+    \item\label{it:linear1} The manifold of the configuration space, \(\mcQ\), has vector space structure, hence it's possible to choose a linear canonical coordinate system \((q^1,\dots,q^n)\) globally in \(\mcQ\). Consequently, there exists a global coordinate system induced in \(\mcP\) that also has vector space structure.
+    \item\label{it:linear2} The Hamiltonian is quadratic, thus the solution space, \(\mcS\), has vector space structure.
+\end{enumerate}
+
+As a consequence of \cref{it:linear1}, we can identify the tangent space of any point \(p\in\mcP\) as \(\mcP\) itself. Thereby, the sympletic form is a bilinear map \(\Omega:\mcP\times\mcP\to\bbR\) in \(\mcP\). Furthermore, since the components of \(\Omega_{ab}\) are constant in the canonical global basis\sn{show it!}, the map independ of the chosen \(y\) used to make the identification. The action of the sympletic structure in \(y_1,y_2\in\mcP\) is
+\begin{subequations}
+    \begin{align}
+        \Omega(y_1,y_2)&=\Omega_{ab}y_1^ay_2^b\\
+        &=\sum_\mu\left(\nabla_ap_\mu\nabla_bq^\mu-\nabla_aq^\mu\nabla_bp_\mu\right)y_1^ay_2^b\\
+        &=\sum_\mu\left(\delta_a^{\mu+n}\delta_b^\mu-\delta_a^\mu\delta_b^{\mu+n}\right)y_1^ay_2^b\\
+        &=\sum_{\mu}\left(p_{1\mu}q_{2\mu}-p_{2\mu}q_{1\mu}\right).
+    \end{align}
+\end{subequations}
+
+Now, we can use the sympletic structure to substitute the canonical coordiantes that describe the manifold of interest. Notice that for a fixed \(y\in\mcP\), the quantity \(\Omega(y,\cdot)\) is a linear function in \(\mcP\). Therefore, we have
+\begin{equation}
+    \begin{cases}
+        y=(0,\dots,0,q^{\mu}=1,0,\dots,0)\implies\Omega(y,\cdot)=-p_{\mu}\\
+        y=(0,\dots,0,p_{\mu}=1,0,\dots,0)\implies\Omega(y,\cdot)=q^{\mu}
+    \end{cases},
+\end{equation}
+i.e., we can replace the coordinate by coordinates independent structures. In this geometric description, the Poisson bracktes, that satisfy the canonical relations \cref{eq:poisson1,eq:poisson2,eq:poisson3}, is given by the more general expression
+\begin{equation}\label{eq:cpbr}
+    \left\{\Omega(y_1,\cdot),\Omega(y_2,\cdot)\right\}=-\Omega(y_1,y_2).
+\end{equation}
+
+From now on, we consider the implications of \cref{it:linear2}. First of all, the Hamiltonian has the general form
+\begin{equation}
+    H(t,y)=\half\sum_{\mu,\nu}K_{\munu}(t)y^\mu y^\nu,
+\end{equation}
+in which, without loss of generality, holds \(K_{\munu}=K_{\nu\mu}\). For this special case, the Hamilton equations are
+\begin{equation}
+    \diff{y^\mu}{t}=\sum_{\nu,\sigma}\Omega^{\mu\sig}K_{\sig\nu}y^\nu.
+\end{equation}
+
+Let \(y_1,y_2\in\mcS\) be two solutions of Hamilton equations, hence we define
+\begin{equation}
+     s(t)\equiv\Omega(y_1(t),y_2(t))=\sum_{\mu\nu}\Omega_{\mu\nu}y_1^{\mu}y_2^\nu.
+\end{equation}
+
+Notice that
+\begin{subequations}
+    \begin{align}
+        \diff{s(t)}{t}&=\sum_{\mu\nu}\Omega_{\mu\nu}\left[\diff{y_1^\mu}{t}y_2^{\nu}+y_1^{\mu}\diff{y_2^\nu}{t}\right]\\
+        &=\sum_{\mu,\nu,\alpha,\beta}\Omega_{\mu\nu}\left[\Omega^{\mu\alpha}K_{\alpha\beta}y_1^\beta y_2^\nu+\Omega^{\nu\alpha}K_{\alpha\beta}y_1^{\mu}y_2^{\beta}\right]\\
+        &=-\sum_{\nu,\beta}K_{\nu\beta}y_1^{\beta}y_2^{\nu}+\sum_{\mu\beta}K_{\mu\beta}y_1^{\mu}y_2^{\beta}\\
+        &=0.
+    \end{align}
+\end{subequations}
+
+Therefore, \(\Omega\) induces a sympletic structure on the solution space \(\mcS\), since the identification between \(\mcP\) and \(\mcS\) is independent of the time at it is done. Thus, \((\mcS,\Omega)\) has a sympletic vector space structure.
+
+\section{Quantum theory}
+
+\subsection*{Quantization}
+
+The quantization process of a theory, consists in finding a Hilbert space \(\mcH\) that represent all the possible states and transform the classical observers \(f\) in self-adjoint operators \(\hat{f}\). The leading point is to identify the Poisson bracktes as the equivalent of the quantum commutator, i.e., a map \(\;\hat{}:f\to\hat{f}\) that satisfies
+\begin{equation}
+    \relax[\hat{f},\hat{g}]=i\hat{\{f,g\}},
+    \label{eq:ccr-quantization}
+\end{equation}
+where we used \(\hbar=1\). It is possible to construct this map in a such a way that all the fundamental observers respect \cref{eq:ccr-quantization}, thus any observable that is linear \(q,\,p\) also satisfy. However, in the cases that \cref{it:linear1} holds, we have
+\begin{equation}
+    \relax\left[\hat{\Omega}(y_1,\cdot),\hat{\Omega}(y_2,\cdot)\right]=-i\Omega(y_1,y_2)\bbI.
+\end{equation}
+
+\subsection*{Weyl's relations}
+
+Besides that, in general, the operators in the coordinate independent description are not bounded (and only densely defined), in such a way that we must call on the exponential version of the commutation relation. To do it, we define 
+\begin{equation}
+    W(y)\equiv\exp{\left[i\Omega(y,\cdot)\right]}
+\end{equation}
+
+Furthermore, we impose that \(\hat{W}(y)\) be unitary, be strongly continuous with respect to \(y\) and satisfy
+\begin{equation}
+    \hat{W}(y_1)\hat{W}(y_2)=\exp{\left[\frac{i}{2}\Omega(y_1,y_2)\right]}\hat{W}(y_1+y_2),
+    \label{eq:weyl1}
+\end{equation}
+and
+\begin{equation}
+    \hat{W}^{\dagger}(y)=\hat{W}(-y).
+    \label{eq:weyl2}
+\end{equation}
+
+The \cref{eq:weyl1,eq:weyl2} are known as Weyl's relations and they are enough the uniquely determine \(\left(\mcH,\hat{W}(y)\right)\). Therefore, a choice of Hilbert space \(\mcH\) and operators \(\hat{W}(y)\) that satisfies the Weyl relations are called irredutible representation of Weyl's relations.
+
+\subsection*{Equivalent theories}
+
+Moreover, a Hilbert space \(\mcH\) and a set of indexed operatores \(V_{\alpha}:\mcH\to\mcH\) is unitarily equivalente to \(\mcH'\) and \(V_{\alpha}'\) if exists and unitary transformation \(U:\mcH\to\mcH'\) such that
+\begin{equation}
+    V_{\alpha}=U^{-1}V_{\alpha}'U,\hspace{2cm}\forall\alpha
+\end{equation}
+
+After the discussion above, is convenient to present Stone-von Neumann's theorem:
+\begin{theorem}[Stone-von Neumann]
+    Let \((\mcP,\Omega)\) be a finite dimension sympletic vector space and \(\left(\mathcal{H},\hat{W}(y)\right)\), \(\left(\mathcal{H}',\hat{W}'(y)\right)\) be two strongly continuous, irredutible and unitary representation of Weyl's relations. Then, both representations are unitarily equivalent.
+\end{theorem}
+
+Thereby, since these representations of Weyl's relations generate equivalent theories, both describe the same physical system. Furthermore, notice that the theorem requires that the space is finite dimensional, hence in the treatment of scalar fields, exists many choices of Weyl's relations that yields non equivalent theories.
+
+\section{Harmonic oscillators}
+
+Right now, we shall apply the develop formalism in a well known system: quantum harmonic oscillators. Our main goal is to study scalar fields and we can interpret them as a set of oscillators in each point in space, hence this construction is a premliminary result for our quantization.
+
+\subsection*{Single oscillator}
+
+First, let us remind the standard formulation presented in most textbooks. The system of a harmonic oscillator is represented by the hamiltonian 
+\begin{equation}
+    H=\frac{1}{2}p^2+\half\omega^2q^2,
+\end{equation}
+The quantized system is attained by choosing the Hilbert space \(L^2(\bbR)\) and the quantized operator is obtained by putting \(\hat{q}\) and \(\hat{p}\) that satisfies the commutation relation
+\begin{equation}
+    \relax[\hat{q},\hat{p}]=i\bbI.
+\end{equation}
+
+The description of the system is easier if we introduce the annihilation operator
+\begin{equation}
+    \hat{a}\equiv\sqrt{\frac{\omega}{2}}\left(\hat{q}+\frac{i}{\omega}\hat{p}\right),
+\end{equation}
+whose adjoint, named creation operator, is given by
+\begin{equation}
+    \hat{a}^{\dagger}=\sqrt{\frac{\omega}{2}}\left(\hat{q}-\frac{i}{\omega}\hat{p}\right).
+\end{equation}
+
+The commutator of these operators is
+\begin{subequations}
+    \begin{align}
+        \relax[\hat{a},\hat{a}^{\dagger}]&=\frac{\omega}{2}\left[\hat{q}+\frac{i}{\omega}\hat{p},\hat{q}-\frac{i}{\omega}p\right]\\
+        &=\frac{\omega}{2}\left(-\frac{i}{\omega}[\hat{q},\hat{p}]+\frac{i}{\omega}[\hat{p},\hat{q}]\right)\\
+        &=-i[\hat{q},\hat{p}]\\
+        &=\bbI.
+    \end{align}
+\end{subequations}
+
+Furthermore, notice that
+\begin{subequations}
+    \begin{align}
+        \hat{a}^{\dagger}\hat{a}&=\frac{\omega}{2}\left(\hat{q}-\frac{i}{\omega}\hat{p}\right)\left(\hat{q}+\frac{i}{\omega}\hat{p}\right)\\
+        &=\frac{\omega}{2}\left(\hat{q}^2+\frac{1}{\omega^2}\hat{p}^2+\frac{1}{\omega}[\hat{q},\hat{p}]\right)\\
+        &=\frac{\omega}{2}\hat{q}^2+\frac{1}{2\omega}\hat{p}^2+\frac{i}{2}[\hat{q},\hat{p}]\\
+        &=\frac{1}{\omega}\hat{H}-\half\bbI,
+    \end{align}
+\end{subequations}
+thus,
+\begin{equation}
+    \hat{H}=\omega\left(\hat{a}^\dagger\hat{a}+\half\bbI\right).
+\end{equation}
+
+It is also convenient to compute the commutator
+\begin{subequations}
+    \begin{align}
+        \relax\left[\hat{H},\hat{a}\right]&=\omega\left[\hat{a}^{\dagger}\hat{a}+\half\bbI,\hat{a}\right]\\
+        &=\omega\left[\hat{a}^{\dagger},\hat{a}\right]\hat{a}\\
+        &=-\omega\hat{a}.
+    \end{align}
+\end{subequations}
+
+Therefore, in the Heisenberg picture, we have
+\begin{equation}
+    \diff{\hat{a}_H}{t}=i\left[\hat{H},\hat{a}_H\right]=-i\omega\hat{a}_H\implies \hat{a}_H(t)=e^{-i\omega t}\hat{a}.
+\end{equation}
+
+This leads to the fundamental operators to be
+\begin{equation}
+    \hat{q}_H(t)=\frac{1}{\sqrt{2\omega}}\left(e^{-i\omega t}\hat{a}+e^{i\omega t}\hat{a}^{\dagger}\right),
+\end{equation}
+and
+\begin{equation}
+    \hat{p}_H(t)=\diff{\hat{q}_H(t)}{t}=-i\sqrt{\frac{\omega}{2}}\left(e^{-i\omega t}\hat{a}-e^{i\omega t}\hat{a}^{\dagger}\right).
+\end{equation}
+
+One should be familiar with the result that the ground state, \(\ket{0}\), satisfies
+\begin{equation}
+    \hat{a}\ket{0}=0,
+\end{equation}
+and the \(n^{\mathrm{th}}\) state is obtained applying the creation operator \(n\) times, i.e.,
+\begin{equation}
+    \ket{n}=\frac{\left(\hat{a}^{\dagger}\right)^{n}}{\sqrt{n!}}\ket{0},
+\end{equation}
+that satisfies
+\begin{equation}
+    \hat{H}\ket{n}=\omega\left(n+\frac{1}{2}\right)\ket{n}.
+\end{equation}
+
+\subsection*{Multiple oscillators}
+
+To generalize for \(N\) decoupled oscillators, inspired by the previous construction, we take the Hilbert space to be \(\mcH\equiv\otimes_{j=1}^N\mcH_j\) with fundamental operators whose commutators are given by
+\begin{equation}
+    \relax[\hat{q}_j,\hat{p}_k]=i\delta_{jk}\bbI.
+\end{equation}
+
+The vacuum state is taken as the tensor product of each oscillator, so we guarantee that is annihilated by any annihilation operator, i.e.,
+\begin{equation}
+    \ket{0}\equiv\otimes_{j=1}^N\ket{0}_j.
+\end{equation}
+
+The excited states are obtained by a similar approach
+\begin{equation}
+    \ket{n_1,\dots,n_N}\equiv\frac{1}{\sqrt{n_1!}}\left(\hat{a}_1^{\dagger}\right)^{n_1}\dots\frac{1}{\sqrt{n_N!}}\left(\hat{a}_N^{\dagger}\right)^{n_N}\ket{0}.
+\end{equation}
+
+\subsection*{Abstract formulation}
+
+Now, we focus on applying the geometric approach to the \(N\) decoupled quantum harmonic oscillators. Remember that due to Stone-von Neumann's theorem, the previous formulations is unitarily equivalent, hence describe the same physical system.
+
+First, we take the sympletic vector space of classical solutions \((\mcS,\Omega)\) and complexify it, i.e., \(\mcS\to\mcS^{\bbC}\). It is possible to extend the action of the form \(\Omega\) to the complexified space by linearity. Thereby, using the sympletic structure, we define a map in the solution space \(\mcS^{\bbC}\), named Klein-Gordon inner product, as
+\begin{equation}
+    \kg{y_1}{y_2}\equiv-i\Omega(\overline{y_1},y_2).
+\end{equation}
+
+Notice that a general (complex) solution for a set of oscillators is
+\begin{equation}
+    q^j(t)=\alpha_je^{-i\omega_jt}+\beta_je^{i\omega_j t}.
+\end{equation}
+
+Then, consider
+\begin{subequations}\label{eq:non-positive}
+    \begin{align}
+        \kg{y}{y}&=-i\Omega(\overline{y},y)\\
+        &=-i\sum_j\overline{p}_jq^j-p_j\overline{q}^j\\
+        &=-i\sum_j\omega_j\left(\overline{\alpha}_je^{i\omega_j t}-\beta_je^{-i\omega_j t}\right)\left(\alpha_je^{-i\omega_j t}+\beta_je^{i\omega_j t}\right)\\
+        &-i\omega_j\left(-\alpha_je^{-i\omega_j t}+\beta_je^{i\omega_j t}\right)\left(\overline{\alpha_j}e^{i\omega_j t}+\overline{\beta}_je^{-i\omega_j t}\right)\\
+        &=2\sum_j\omega_j\left(\lvert\alpha_j\rvert^2-\lvert\beta_j\rvert^2\right).
+    \end{align}
+\end{subequations}
+
+Thus, notice that, in general, it is not positive-definite. However, is we take the \(n\)-dimensional space \(\mcH\) of the complex solutions with positive frequency, i.e., such that \(q^j\in\mcH\), then
+\begin{equation}
+    q^j(t)=\alpha_je^{-i\omega_j t}.
+\end{equation}
+
+If we impose, \(\beta_j=0\) in \cref{eq:non-positive}, it is evident that the map \(\kg{\cdot}{\cdot}:\mcH\times\mcH\to\bbC\) is positive-definite, hence an inner product. Then, \(\mcH\) is a Hilbert space and it's symmetric Fock space, \(\mcF_S(\mcH)\), is the Hilbert sapce used in our alternative quantization process.
+
+Let \(\xi^j\in\mcH\) be a complex solution such that only the \(j^{\mathrm{th}}\) mode is excited and suppose it is normalized, i.e.,
+\begin{equation}
+    \lVert\xi^j\rVert^2=\kg{\xi^j}{\xi^j}=1,
+\end{equation}
+then the set \(\{\xi^j\}_{j\in I_n}\) is an orthonormal basis of \(\mcH\). Now, we define the position and momentum operators (in Heisenberg picture) to be
+\begin{equation}
+    \hat{q}^j(t)=\xi^j(t)\hat{a}\left(\overline{\xi}\right)+\overline{\xi}^j\hat{a}^{\dagger}(\xi)
+\end{equation}
+and
+\begin{equation}
+    p_j(t)=\diff{q^j}{t},
+\end{equation}
+in which \(\hat{a}_j\) is the annihilation operator of the Fock space. Using the \cref{prop:ccr}, we find\sn{calculate!}
+\begin{equation}
+    \relax[q^\mu,p_\nu]=?
+\end{equation}
+
+As mentioned earlier, one can show\sn{should I show it?} that the formulations developed previously and the latter one are unitarily equivalente, hence describe the same physical system. Moreover, due to Stone-von Neumman theorem, there exists a unitarily transformation \(U:L^2(\bbR)\to\mcF_S(\mcH)\).
+
+In order to generalize our construction to a basis independet language, we take the solution space of negative frequencies, denoted by \(\overline{\mcH}\), such that for any \(y\in\mcS^{\bbC}\), exists an unique representation
+\begin{equation}
+    y=y^++y^-,
+\end{equation}
+where \(y^+\in\mcH\) and \(y^-\in\overline{\mcH}\). Thus, we define a linear map \(K:\mcS^\bbC\to\mcH\) that takes the positive frequency part of the complex solution. Similarly, we define the map \(\overline{K}:\mcS^\bbC\to\overline{\mcH}\) that take the negative part. Thereby,
+\begin{equation}
+    Ky=y^+\hspace{2cm}\text{and}\hspace*{2cm}\overline{K}y=y^-.
+\end{equation}
+
+Let \(y\in\mcS\subset\mcS^\bbC\), then
+\begin{equation}
+    \overline{K}y=y^-=\overline{y}^+\equiv\overline{Ky}.
+\end{equation}
+
+Therefore, for \(y\in\mcS\), the operator that represents the classical observable \(\Omega(y,\cdot)\) is given by
+\begin{equation}
+    \hat{\Omega}(y,\cdot)=ia\left(\overline{Ky}\right)-ia^{\dagger}\left(Ky\right),
+\end{equation}
+because this operator satisfies the \cref{eq:cpbr} as proved below:
+\begin{subequations}
+    \begin{align}
+        \relax[\hat{\Omega}(y_1,\cdot),\hat{\Omega}(y_2,\cdot)]&=\left[ia\left(\overline{Ky_1}\right)-ia^{\dagger}\left(Ky_1\right)\right]\left[ia\left(\overline{Ky_2}\right)-ia^{\dagger}\left(Ky_2\right)\right]\\
+        &-\left[ia\left(\overline{Ky_2}\right)-ia^{\dagger}\left(Ky_2\right)\right]\left[ia\left(\overline{Ky_1}\right)-ia^{\dagger}\left(Ky_1\right)\right]\\
+        &=\left[a\left(\overline{Ky_2},a\left(\overline{Ky_1}\right)\right)\right]+\left[a^{\dagger}\left(Ky_2\right),a^{\dagger}\left(Ky_1\right)\right]\\
+        &+\left[a\left(\overline{Ky_1},a^{\dagger}(Ky_2)\right)\right]-\left[a\left(\overline{Ky_2}\right),a^{\dagger}\left(Ky_1\right)\right]\\
+        &=\langle Ky_1,Ky_2\rangle-\langle Ky_2,Ky_1\rangle\\
+        &=-i\Omega\left(\overline{Ky_1},Ky_2\right)+i\Omega\left(\overline{Ky_2},Ky_1\right)\\
+        &=-i\Omega\left(Ky_1+\overline{Ky_1},Ky_2+\overline{Ky_2s}\right)\\
+        &=-i\Omega(y_1,y_2).
+    \end{align}
+\end{subequations}
+
+The operator in Heisenberg picture is obtained substituting \(y\) by \(y(t)\) with the condition \(y(0)=y\). 
+
+Notice that the previous construction relied on the fact that the Hamiltonian is time-independent, hence the solutions has purely positive or negative frenquencies, however we can generalize this result.
+
+\section{Generic linear system}
+
+For a time-dependet Hamiltonian the procedure is similar. One must choose a subspace, \(\mcH\subset\mcS^\bbC\) that satisfy
+\begin{enumerate}
+    \item The Klein-Gordon inner product is positive-definite in \(\mcH\), hence transforming it in a Hilbert space.
+    \item The complexified space of solutions \(\mcS^\bbC\) is generated by \(\mcH\) and \(\overline{\mcH}\).
+    \item Let \(y^+\in\mcH\) and \(y^-\in\overline{\mcH}\), then
+    \begin{equation}
+        \kg{y^+,y^-}=0.
+    \end{equation}
+\end{enumerate}
+
+Therefore, every \(y\in\mcS^\bbC\) can be uniquely written as a sum of an element of \(\mcH\) and of it's conjugate. We define the projective maps the same way.
+
+Then, notice that for \(y_1,y_2\in\mcS\), we have
+\begin{subequations}
+    \begin{align}
+        \text{Im}\langle Ky_1,Ky_2\rangle&=-\text{Re}\left[\Omega\left(\overline{Ky_1},Ky_2\right)\right]\\
+        &=-\frac{1}{2}\Omega\left(\overline{Ky_1},Ky_2\right)-\frac{1}{2}\Omega\left(Ky_1,\overline{Ky_2}\right)\\
+        &=-\frac{1}{2}\Omega\left(y_1,y_2\right).
+    \end{align}
+\end{subequations}
+
+Thus, if we define
+\begin{equation}
+    \mu(y_1,y_2)\equiv\text{Re}\kg{Ky_1,Ky_2}=\text{Im}\Omega\left(\overline{Ky_1},Ky_2\right),
+\end{equation}
+we have
+\begin{equation}
+    \kg{Ky_1,Ky_2}=\mu(y_1,y_2)-\frac{i}{2}\Omega(y_1,y_2).
+\end{equation}
+
+\subsection*{Choices of Hilbert space}\label{subsec:mu}
+From the Schwarz's inequality, for every \(z_1,z_2\in\mcH\), we have
+\begin{equation}
+    \lVert z_1\rVert^2\lVert z_2\rVert^2\geq\lvert\langle z_1,z_2\rangle\rvert^2\geq\lvert\text{Im}\langle z_1,z_2\rangle\rvert^2.
+\end{equation}
+
+For the special case in which \(z_1=Ky_1\) and \(z_2=Ky_2\), 
+\begin{subequations}
+    \begin{align}
+        \lVert Ky_1\rVert^2\lVert Ky_2\rVert^2&=\langle Ky_1,Ky_1\rangle\langle Ky_2,Ky_2\rangle\\
+        &=\mu(y_1,y_1)\mu(y_2,y_2)-\frac{1}{4}\Omega(y_1,y_1)\Omega(y_2,y_2)+\\
+        &-\frac{i}{2}\left[\mu(y_1,y_1)\Omega(y_2,y_2)+\mu(y_2,y_2)\Omega(y_1,y_1)\right]\\
+        &\geq \frac{1}{4}\left[\Omega(y_1,y_2)\right]^2,
+    \end{align}
+\end{subequations}
+hence,
+\begin{equation}
+    \mu(y_1,y_1)\mu(y_2,y_2)\geq\frac{1}{4}\left[\Omega(y_1,y_2)\right]^2.
+\end{equation}
+
+Since is always possivle to "saturate" Schwarz's inequality, we can impose
+\begin{equation}
+    \mu(y_1,y_1)=\frac{1}{4}\max_{y_2\neq0}{\frac{\left[\Omega(y_1,y_2)\right]^2}{\mu(y_2,y_2)}},
+    \label{eq:cond-mu}
+\end{equation}
+however, since \(\mu\) appears in both sides, this condition does not completly determine the function. Conversely, suppose that exists a map \(\mu:\mcS^\bbC\times\mcS^\bbC\to\bbR\) that is positive-definite, bilinear, symmetric and satisfies \cref{eq:cond-mu}.
+
+\begin{proposition}
+    For \(y_1\in\mcS\), there exists a unique \(y_2\in\mcS\) such that
+    \begin{equation}
+        \frac{1}{2}\Omega(y_1,y_2)=\mu(y_1,y_1)\;\;\;\text{and}\;\;\;\mu(y_1,y_1)=\mu(y_2,y_2).
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    show it later!
+\end{proof}
+
+One may verify\sn{verify!}
+\begin{equation}
+    y_1\to\half(y_1+iy_2),
+\end{equation}
+leads to a Hilbert space that also satisfy the desired conditions. Thus, notice that the choice \(\mcH\) can be replaced by a specification of \(\mu\).
+\\
+\vspace{1mm}
+\begin{center}
+    \psvectorian[scale=0.8]{103}
+\end{center}
+\let\clearpage
+\newpage
+\pagestyle{empty}
+
+
+\chapter{Klein-Gordon field}
+\pagestyle{fancy}
+
+The construction of a quantum field theory often requires an unitary time evolution to be well defined, hence we must require some features of the spacetime we are working on, we shall discuss such requirements. Moreover, we also describe the quantization of a real, linear and scalar field, known as Klein-Gordon field.
+
+\section{Globally hyperbolic spacetimes}
+Let \((\mcM, g_{ab})\) be an arbitrary spacetime. A real, linear and scalar Klein-Gordon field has action given by
+\begin{equation}
+    S=-\frac{1}{2}\int\mathrm{d}^4x\sqrt{-g}\left(\nabla^a\phi\nabla_a\phi+m^2\phi^2\right),
+\end{equation}
+in which \(\nabla_a\) is the covariant derivative, with no torsion and compatible with the metric. If we minimize the action
+\begin{subequations}
+    \begin{align}
+        \delta S&=S[\phi+\delta\phi]-S[\phi]\\
+        &=-\frac{1}{2}\int\mathrm{d}^4x\sqrt{-g}\left[\nabla^a(\phi+\delta\phi)\nabla_a(\phi+\delta\phi)+m^2(\phi+\delta\phi)\right]\\
+        &+\frac{1}{2}\int\mathrm{d}^4x\sqrt{-g}\left(\nabla^a\phi\nabla_a\phi+m^2\phi^2\right)\\
+        &=-\frac{1}{2}\int\mathrm{d}^4x\sqrt{-g}\left(\nabla^a\phi\nabla_a\delta\phi+\nabla^a\delta\phi\nabla_a\phi+2m^2\phi\delta\phi+\mathcal{O}(\delta\phi^2)\right)\\
+        &=-\int\mathrm{d}^3x\sqrt{h}\delta\phi n^a\nabla_a\phi+\int\mathrm{d}x^4\sqrt{-g}\delta\phi\left[\nabla^a\nabla_a\phi-m^2\phi\right]\\
+        &=0.
+    \end{align}
+\end{subequations}
+
+Therefore, ignoring the border terms, Klein-Gordon equation is
+\begin{equation}\label{eq:kg}
+    \okg\phi=0.
+\end{equation}
+
+To construct the quantum theory, we need to define precisely the classical system phase space \(\mcP\) and, to do it, is necessary that the intial conditions determine uniquely a solution of \cref{eq:kg}. Thus, suppose that the spacetime is orientable and \(\Sig\subset\mcM\) is a closed and achronal set, i.e., none two points of \(\Sig\) can be connected by a timelike curve. The domain of dependence of \(\Sig\) is defined as
+\begin{equation*}
+    D(\Sig)=\{p\in\mcM\big\vert\;\text{every inextensible causal curve through \(p\) intersects \(\Sig\)}\}.
+\end{equation*}
+
+If \(D(\Sig)=\mcM\), then \(\Sig\) is a Cauchy surface. A spacetime that admits a Cauchy surface is called globally hyperbolic and it's imporance is expressed in two theorems, the first one states about the space topology:
+\begin{theorem}
+    Let \((\mcM,g_{ab})\) be a globally spacetime with Cauchy surface \(\Sig\), then \(\mcM\) has topology \(\bbR\times\Sig\). Furthermore, \(\mcM\) can be decomposed in a one parameter family of smooth Cauchy surfaces \(\Sig_t\), i.e., parametrized by a "time function".
+\end{theorem}
+
+The second one, enable the one-to-one correspondence between solutions and initial conditions:
+\begin{theorem}
+    Let \((\mcM,g_{ab})\) be a globally hyperbolic spacetime with Cauchy surface \(\Sig\). Given any pair of smooth function \((\phi_0,\pi_0)\) in \(\Sig\), there exists an unique solution of \cref{eq:kg} in \(\mcM\) such that
+    \begin{equation}
+        \phi\big\vert_{\Sigma}=\phi_0\hspace*{5mm}\text{and}\hspace*{5mm}n^a\nabla_a\phi\big\vert_{\Sigma}=\pi_0,
+    \end{equation}
+    in which \(n^a\) is the unit vector perpendicular to \(\Sig\).
+\end{theorem}
+
+Henceforth, we shall work with globally hyperbolic spacetimes to be able to make the desired identification between the phase space and solution space as previously used.
+
+\section{Theory's structures}
+Let \((\mcM,g_{ab})\) be a orientable, globally hyperbolic spacetime with a foliation of \(\mcM\) with smooth Cauchy surfaces \(\Sig_t\) indexed by a smooth function \(t\). We introduce the vector field \(t^a\) that represents the time evolution in \(\mcM\) and satisfies \(t^a\nabla_a t=1\), then
+\begin{equation}
+    t^a=Nn^a+N^a,
+\end{equation}
+in which \(n^a\) and \(N^a\) are the vectors perpendicular and parallel to \(\Sig_t\) respectively. Take local coordinates \(t,\,x^1,\,x^2,\,x^3\) such that \(t^a\nabla_a x^i=0\), i.e., such that \(t^a=(\partial_t)^a\). Thereby, in this coordiantes, the Klein-Gordon action is
+\begin{equation}
+    S=\int\mcL\rmd t,
+\end{equation}
+with
+\begin{equation}
+    \mathcal{L}=\frac{1}{2}\int\mathrm{d}^3x\sqrt{h}N\left[\left(n^a\nabla_a\phi\right)^2-h^{ab}\nabla_a\phi\nabla_b\phi-m^2\phi^2\right],
+    \label{eq:density-L}
+\end{equation}
+in which \(h_{ab}\) is the metric induced in \(\Sig_t\). Notice that
+\begin{equation}
+    n^a\nabla_a\phi=\frac{1}{N}(t^a-N^a)\nabla_a\phi=\frac{1}{N}\dot{\phi}-\frac{1}{N}N^a\nabla_a\phi.
+\end{equation}
+
+Then, substituting in \cref{eq:density-L}, we have
+\begin{equation}
+    \mathcal{L}=\frac{1}{2}\int\mathrm{d}^3x\sqrt{h}\left[\frac{1}{N}\dot{\phi}^2-\frac{2}{N}\dot{\phi}N^a\nabla_a\phi-h^{ab}\nabla_a\phi\nabla_b\phi-m^2\phi^2\right].
+\end{equation}
+
+Thus, the conjugated momentum density is
+\begin{equation}
+    \pi=\diffp{\mathcal{L}}{\dot{{\phi}}}=\sqrt{h}\left(\frac{1}{N}\dot{\phi}-\frac{1}{N}N^a\nabla_a\phi\right)=\sqrt{h}n^a\nabla_a\phi.
+    \label{eq:pi}
+\end{equation}
+
+A point in the classical phase space is determined by functions \(\phi(x)\) and \(\pi(x)\) in \(\Sig_0\), the Cauchy surface that represents \(t=0\). The class of functions that allows all the necessary structures to be well defined is the smooth ones with compact support \(\smooth_0(\Sig_0)\), i.e.,
+\begin{equation}
+    \mathcal{P}=\{[\phi,\pi]\vert \phi:\Sigma_0\to\mathbb{R}\;\;\text{and}\;\;\pi:\Sigma_0\to\mathbb{R};\;\phi,\pi\in C_0^{\infty}\left(\Sigma_0\right)\}.
+\end{equation}
+
+Therefore, we take the solution space \(\mcS\) to be the set of all solutions of \cref{eq:kg} whose initial conditions lies in \(\mcP\). Furthermore, we define the sympletic structure \(\Omega:\mcP\times\mcP\to\bbR\) as
+\begin{equation}
+    \Omega\left([\phi_1,\pi_1],[\phi_2,\pi_2]\right)\equiv\int_{\Sigma_0}\mathrm{d}^3x(\pi_1\phi_2-\pi_2\phi_1),
+\end{equation}
+or, in a equivalently, identifying \(\mcP\) with \(\mcS\),
+\begin{equation}
+    Omega(\phi_1,\phi_2)=\int_{\Sigma_0}\mathrm{d}^3x\sqrt{h}\left(\phi_2n^a\nabla_a\phi_1-\phi_1n^a\nabla_a\phi_2\right).
+\end{equation}
+
+In order to induce a sympletic structure in \(\mcS\), we must show that the identification is time-indepent.
+\begin{proposition}
+    The sympletic product of two solutions \(\phi_1\) and \(\phi_2\)
+    \begin{equation}
+        s(t)=\Omega(\phi_1(t),\phi_2(t))=\int_{\Sigma_t}\mathrm{d}^3x\sqrt{h}\left(\phi_2n^a\nabla_a\phi_1-\phi_1n^a\nabla_a\phi_2\right),
+    \end{equation}
+    is constant in time, i.e., does not depend on \(t\).
+\end{proposition}
+\begin{proof}
+    Notice that the statement is equivalent to show that for any \(t_1\) and \(t_2\) holds
+    \begin{equation}
+        \int_{\Sigma_{t_1}}\mathrm{d}^3x\sqrt{h}\left(\phi_2n^a\nabla_a\phi_1-\phi_1n^a\nabla_a\phi_2\right)=\int_{\Sigma_{t_2}}\mathrm{d}^3x\sqrt{h}\left(\phi_2n^a\nabla_a\phi_1-\phi_1n^a\nabla_a\phi_2\right).
+    \end{equation}
+
+    To show it, consider the region of spacetimes \(\Sig\) that has the Cauchy surfaces \(\Sig_{t_1}\) and \(\Sig_{t_2}\) as boundaries\sn{image!}, then
+    \begin{subequations}
+        \begin{align}
+            &\int_{\Sigma_{t_1}}\mathrm{d}^3x\sqrt{h}\left(\phi_2n^a\nabla_a\phi_1-\phi_1n^a\nabla_a\phi_2\right)-\int_{\Sigma_{t_2}}\mathrm{d}^3x\sqrt{h}\left(\phi_2n^a\nabla_a\phi_1-\phi_1n^a\nabla_a\phi_2\right)\\
+            &=\int_{\partial\Sigma}\mathrm{d}^3x\sqrt{h}\left(\phi_2n^a\nabla_a\phi_1-\phi_1n^a\nabla_a\phi_2\right)\\
+            &=\int_{\Sigma}\mathrm{d}^4x\sqrt{-g}\left[\nabla^a\left(\phi_2\nabla_a\phi_1\right)-\nabla^a\left(\phi_1\nabla_a\phi_2\right)\right]\\
+            &=\int_{\Sigma}\mathrm{d}^4x\sqrt{-g}\left[\nabla^a\phi_2\nabla_a\phi_1+\phi_2\nabla^a\nabla_a\phi_1-\nabla^a\phi_1\nabla_a\phi_2-\phi_1\nabla^a\nabla_a\phi_2\right]\\
+            &=\int_{\Sigma}\mathrm{d}^4x\sqrt{-g}\left(\phi_2m^2\phi_1-\phi_1m^2\phi_2\right)=0.
+        \end{align}
+    \end{subequations}
+\end{proof}
+
+Again exchaging between \(\mcP\) and \(\mcS\), we want operators \(\hat{\Omega}(\psi,\cdot)\), \(\psi\in\mcS\), such that
+\begin{equation}
+    \left[\hat{\Omega}(\psi_1,\cdot),\hat{\Omega}(\psi_2,\cdot)\right]=-i\Omega(\psi_1,\psi_2)\mathbb{I}.
+\end{equation}
+
+Notice that it would be natural to choose \(\mcH\) such that it is the positive frequency solution's set, however, not only none of these satisfy the initial condition compacity in \(\Sig_0\), but this notion is not extended to arbitrary spacetimes. Thus, the Hilbert space must be obtained by completing the complexified space \(\mcS^\bbC\) with \(\kg{\cdot}{\cdot}\). One may notice that the choice of inner product also depend on \(\mcH\), hence the construction becomes circular.
+
+An alternative procedure to complete \(\mcS^\bbC\) would be similar to what was done in \cref{subsec:mu}. We can define a real inner product \(\mu:\mcS^{\bbC}\times\mcS^\bbC\to\bbR\) such that, for all \(\psi_1\in\mcS\),
+\begin{equation}
+    \mu(\psi_1,\psi_1)\equiv\frac{1}{4}\sup_{\psi_2\neq 0}{\frac{\left[\Omega(\psi_1,\psi_2)\right]^2}{\mu(\psi_2,\psi_2)}}.
+    \label{eq:omega-bounded}
+\end{equation}
+
+Now, we complete \(\mcS\) to \(\mcS_\mu\) using the inner product
+\begin{equation}
+    \innermu{\psi_1}{\psi_2}\equiv 2\mu(\psi_1,\psi_2).
+\end{equation}
+
+Since \(\Omega\) is bounded\sn{why?}, by \cref{eq:omega-bounded}, we can extend it's action to \(\mcS_{\mu}\) by continuity. We deifne the operator \(J:\mcS_\mu\to\mcS_\mu\) by means of
+\begin{equation}
+    \Omega(\psi_1,\psi_2)=2\mu(\psi_1,J\psi_2)=\langle\psi_1,J\psi_2\rangle_\mu.
+\end{equation}
+
+Since \(\Omega\) is antisymmetric and \(\mu\) is real, we have
+\begin{subequations}
+    \begin{align}
+        \innermu{\psi_1}{J\psi_2}&=-\innermu{\psi_2}{J\psi_1}\\
+        &=-\innermu{J\psi_1}{\psi_2}\\
+        &=-\innermu{\psi}{J^{\dagger}\psi_2},
+    \end{align}
+\end{subequations}
+
+Therefore, we comparing the second and last equalities,
+\begin{equation}
+    J^{\dagger}=-J.
+\end{equation}
+
+Furthermore, from \cref{eq:omega-bounded}, \(J\) preserves the norm\sn{why?}, then
+\begin{equation}
+    J^{\dagger}J=\bbI\implies J^2=-\bbI.
+\end{equation}
+
+Then, \(\mu\) naturally provides a complex structure in \(\mcS_\mu\). Now, we complexify \(\mcS_{\mu}\) and extend the action of \(\Omega\), \(\mu\) and \(J\) by (complex) continuity. The Klein-Gordon product is, finally, defined as
+\begin{equation}
+    \kg{\psi_1}{\psi_2}\equiv 2\mu(\overline{\psi}_1,\psi_2).
+\end{equation}
+
+Notice that \(iJ:\mcS^\bbC_\mu\to\mcS^\bbC_\mu\) is self-adjoint, with eigenvalues \(\pm i\), then by the spectral theorem, the set \(\mcS^\bbC_\mu\) is the direct sum of the orthogonal spaces correspondent to each eigenvalue. We take \(\mcH\subset\mcS^{\bbC}\) to be the subspace of eigenvaleu \(i\), hence from spectral theorem properties that \(\mcH\) satisfies the necessary properties of quantization.
+
+Finally, the quantum theory is obtained by choosing \(\mcF_S(\mcH)\) as the Hilbert space and defining the operators correspondent to the classical observables \(\Omega(\psi,\cdot)\), \(\psi\in\mcS\), as
+\begin{equation}
+    \hat{\Omega}(\psi,\cdot)=ia\left(\overline{K\psi}\right)-ia^{\dagger}\left(K\psi\right),
+\end{equation}
+in which \(K\) is the projector defined as usual.
+
+\section{Interpretation of field operator}
+
+Indepdent of the choices for the construction of the theory, the operators \(\hat{\Omega}(\psi,\cdot)\) can be interpreted as a spacetime average of the operator (in the Heisenberg picture) that represents the field value.
+
+Let \(\mfF(\mcM)=\smooth_0(\mcM)\) be the vector space of smooth functions with compact support in our spacetime of interest. Moreover, let \(G_A(x,x')\) and \(G_R(x,x')\) be the retarded and advanced Green functions of the Klein-Gordon operator, i.e.,
+\begin{subequations}
+    \begin{align}
+        \left(-\nabla^a\nabla_a+m^2\right)G_A(x,x')&=\frac{1}{\sqrt{-g}}\delta(x,x')=\delta_M(x,x')\\
+        \left(-\nabla^a\nabla_a+m^2\right)G_R(x,x')&=\frac{1}{\sqrt{-g}}\delta(x,x')=\delta_M(x,x').
+    \end{align}
+\end{subequations}
+
+Thereby, we can define the advanced and retarded solutions with source \(f\in\mfF(\mcM)\) as
+\begin{subequations}
+    \begin{align}
+        Rf(x)\equiv\int_\mathcal{M}\mathrm{d}^4x'\sqrt{-g}G_R(x,x')f(x')\\
+        Af(x)\equiv\int_\mathcal{M}\mathrm{d}^4x'\sqrt{-g}G_A(x,x')f(x').
+    \end{align}
+\end{subequations}
+
+These solutions are the ones that, if \(\supp{f}\) denotes the support of the function \(f\), then \(\supp{Rf}\subset J^+(\supp{f})\) (i.e., it propagates \(f\) to the future) and \(\supp{Af}\subset J^-(\supp{f})\) (i.e., it proapgates \(f\) to the past)\sn{add images on the supports}. Furthermore, notice that, indeed, \(Rf\) is a solution of \cref{eq:kg} with source \(f\),
+\begin{subequations}
+    \begin{align}
+        \left(-\nabla^a\nabla_a+m^2\right)Rf(x)&=\int_\mathcal{M}\mathrm{d}^4x'\sqrt{-g}(-\nabla^a\nabla_a+m^2)G_R(x,x')f(x')\\
+        &=\int_{\mathcal{M}}\df^4x'\sqrt{-g}\delta_M(x,x')f(x')\\
+        &=f(x),
+        \label{eq:Rf-fontef}
+    \end{align}
+\end{subequations}
+where the covariant derivatives acted only on the Green functions because they are taken with respect to \(x\). It is evident that the same holds for \(Af\). Then, we define
+\begin{equation}
+    Ef\equiv Af-Rf.
+\end{equation}
+
+It is immediate that \(Ef\) is a solution of the homogenous Klein-Gordon equation with initial condition \(f\in\mfF(\mcM)\). Therefore, we obtain a linear map \(E:\mfF(\mcM)\to\mcS\) whose important properties are discussed in the following proposition.
+\begin{proposition}
+    
+\end{proposition}

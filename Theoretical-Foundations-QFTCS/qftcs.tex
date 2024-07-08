@@ -1,4 +1,4 @@
-\documentclass[11pt, twoside]{report}
+\documentclass[11pt, twoside]{book}
 
 %imagens
 \usepackage{tikz}
@@ -13,16 +13,20 @@
 %formatação
 \usepackage[T1]{fontenc}
 \usepackage{indentfirst, lmodern}
+\usepackage{sidenotes}
 \usepackage[many]{tcolorbox}
 \pagenumbering{roman}
+\usepackage{appendix}
+
+%utilidades
+\usepackage{comment}
 
 %referências
 \usepackage{bookmark}
 \usepackage{hyperref, url}
-\hypersetup{colorlinks=true, linkcolor=magenta}
+\hypersetup{colorlinks=true, linkcolor=purple}
 \usepackage[capitalize, nameinlink, noabbrev]{cleveref}
 \usepackage{orcidlink}
-
 %chiquezas
 \usepackage{fancyhdr}
 \setlength{\headheight}{13.6pt}
@@ -35,28 +39,13 @@
 \fancyhead[C,RE,LO]{}
 \fancyhead[LE]{\leftmark}
 \fancyhead[RO]{\rightmark}
-\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}\fancyfoot[RO,LE]{\thepage}}
-\usepackage[Bjarne]{fncychap}
 \usepackage{psvectorian}
 
 %título
 \usepackage{pifont}
 \providecommand{\HUGE}{\Huge}
-\newlength{\drop}
-\newcommand*{\FSfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
-\newcommand*{\TXfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
 \newcommand*{\plogo}{\fbox{$\mathcal{CH}$}}
-\makeatletter
-\DeclareRobustCommand\ltseries
-{\not@math@alphabet\ltseries\relax
-\fontseries\ltdefault\selectfont}
-\newcommand{\ltdefault}{l}
-\DeclareTextFontCommand{\textlt}{\ltseries}
-\DeclareRobustCommand\hbseries
-{\not@math@alphabet\hbseries\relax
-\fontseries\hbdefault\selectfont}
-\newcommand{\hbdefault}{hb}
-\DeclareTextFontCommand{\texthb}{\hbseries}
+%\makeatletter
 \makeatother
 \newcommand*{\titleIP}{\begingroup
 \begin{center}
@@ -66,8 +55,8 @@
 \vspace{1cm}
 {\LARGE Carlos Henrique Correr\orcidlink{0000-0002-3598-4412}\vspace{\baselineskip}}
 \vfill
-\plogo \\[\baselineskip]
-\psvectorian[scale=1.5]{123}
+\psvectorian[scale=1.4]{123} \\[\baselineskip]
+\plogo
 \end{center}
 \endgroup}
 
@@ -97,7 +86,7 @@
 }
 
 \theoremstyle{mystyle}{
-  \newtheorem{lemma}[theorem]{Lemma}
+  \newtheorem{proposition}[theorem]{Proposition}
 }
 
 \theoremstyle{mystyle}{
@@ -123,20 +112,20 @@
 \tcolorboxenvironment{theorem}{
   boxrule=0pt,
   boxsep=0pt,
-  colback={white!90!magenta},
+  colback={white!90!purple},
   enhanced jigsaw, 
-  borderline west={2pt}{0pt}{magenta},
+  borderline west={2pt}{0pt}{purple},
   sharp corners,
   before skip=10pt,
   after skip=10pt,
   breakable,
 }
 
-\tcolorboxenvironment{lemma}{
+\tcolorboxenvironment{proposition}{
   boxrule=0pt,
   boxsep=0pt,
   blanker,
-  borderline west={2pt}{0pt}{Red},
+  borderline west={2pt}{0pt}{white!10!magenta},
   before skip=10pt,
   after skip=10pt,
   sharp corners,
@@ -149,7 +138,7 @@
   boxrule=0pt,
   boxsep=0pt,
   blanker,
-  borderline west={2pt}{0pt}{NavyBlue!80!white},
+  borderline west={2pt}{0pt}{gray},
   before skip=10pt,
   after skip=10pt,
   left=12pt,
@@ -212,6 +201,12 @@
 \newcommand{\half}{\frac{1}{2}}
 \newcommand{\munu}{{\mu\nu}}
 \newcommand{\thalf}{\tfrac{1}{2}}
+\newcommand{\smooth}{C^{\infty}}
+\newcommand{\kg}[2]{\left\langle #1, #2\right\rangle}
+\newcommand{\okg}{\left(-\nabla^a\nabla_a+m^2\right)}
+\newcommand{\rmd}{\mathrm{d}}
+\newcommand{\innermu}[2]{\left\langle #1,#2\right\rangle_{\mu}}
+\newcommand{\supp}[1]{\mathrm{supp}#1}
 
 \newcommand{\bfA}{{\bf A}}
 \newcommand{\bfB}{{\bf B}}
@@ -375,18 +370,46 @@
 \newcommand{\mfY}{{\mathfrak{Y}}}
 \newcommand{\mfZ}{{\mathfrak{Z}}}
 
+%partes e capítulos
+\usepackage{titlesec}
+\titleclass{\part}{top} % make part like a chapter
+\titleformat{\part}
+[display]
+{\centering\normalfont\huge}
+{\psvectorian[scale=0.25]{8}\vspace{3pt}\\
+\MakeUppercase{\partname} \thepart}
+{0pt}
+{\psvectorian[scale=0.6]{88}\vspace{1pt}\\
+\LARGE\MakeUppercase}
+\titlespacing*{\part}{0pt}{0pt}{20pt}
 
+\titleclass{\chapter}{top} % make chapter like a section (no newpage)
+\titleformat{\chapter}
+[display]
+{\centering\normalfont\huge}
+{\MakeUppercase{\chaptertitlename} \thechapter}
+{0pt}
+{\psvectorian[scale=0.8]{89}\vspace{6pt}\\
+\LARGE\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
 
 \begin{document}
 
-\begin{titlepage}
-    \pagestyle{empty}
-    \titleIP
-    \clearpage
-\end{titlepage}
+\pagestyle{empty}
+\titleIP
+\cleardoublepage
+
+\part*{Preface}
+These notes aim to keep track of my studies for my undergraduate project, developed while I am persuing my Bachelor degree in Physics at the Institute of Physics, University of São Paulo (IFUSP).
+
+First of all, we shall cover the basics aspects of the standard bottom-top approach to describe quantum gravity in low-energies, commonly known as quantum field theory in curved spacetimes. The main goal is to understand one prediction of this theory, named Unruh effect and develop the basic concepts of theory. After that, we shall procede to formulation of electromagnetism in Minkowski spacetime, to understand the radiation emitted by an accelerated particle, a result from classical physics. Finally, we explore the correspondence between the Unruh effect, a essentialy quantum effect, and Larmor radiation, a classical effect, when we move from the frame of a inertial observer to an accelerated one.
+
+I must acknowledge the help of my advisor, André G. S. Landulfo (UFABC), that has always been extremely patient and found the right words to clear my mind so many times, without him the path would be much harder.
 
 \tableofcontents
 
-\include{chapters/1.introduction}
+\include{parts/1.theory-qftcs}
+
+\include{parts/0.appendix}
 
 \end{document}
