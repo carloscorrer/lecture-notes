@@ -1,0 +1,392 @@
+\documentclass[11pt, twoside]{report}
+
+%imagens
+\usepackage{tikz}
+\usepackage{graphicx, caption, subcaption}
+\usepackage{float}
+\usepackage{xcolor}
+
+%matemáticas
+\usepackage{amsmath, amsfonts, amssymb, amsthm, siunitx, esint, braket}
+\usepackage[ISO]{diffcoeff}
+
+%formatação
+\usepackage[T1]{fontenc}
+\usepackage{indentfirst, lmodern}
+\usepackage[many]{tcolorbox}
+\pagenumbering{roman}
+
+%referências
+\usepackage{bookmark}
+\usepackage{hyperref, url}
+\hypersetup{colorlinks=true, linkcolor=magenta}
+\usepackage[capitalize, nameinlink, noabbrev]{cleveref}
+\usepackage{orcidlink}
+
+%chiquezas
+\usepackage{fancyhdr}
+\setlength{\headheight}{13.6pt}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter.\ #1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\fancyhead{}
+\fancyfoot[C,RE,LO]{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyhead[C,RE,LO]{}
+\fancyhead[LE]{\leftmark}
+\fancyhead[RO]{\rightmark}
+\fancypagestyle{plain}{\renewcommand{\headrulewidth}{0pt}\fancyhf{}\fancyfoot[RO,LE]{\thepage}}
+\usepackage[Bjarne]{fncychap}
+\usepackage{psvectorian}
+
+%título
+\usepackage{pifont}
+\providecommand{\HUGE}{\Huge}
+\newlength{\drop}
+\newcommand*{\FSfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+\newcommand*{\TXfont}[1]{\fontencoding{T1}\fontfamily{#1}\selectfont}
+\newcommand*{\plogo}{\fbox{$\mathcal{CH}$}}
+\makeatletter
+\DeclareRobustCommand\ltseries
+{\not@math@alphabet\ltseries\relax
+\fontseries\ltdefault\selectfont}
+\newcommand{\ltdefault}{l}
+\DeclareTextFontCommand{\textlt}{\ltseries}
+\DeclareRobustCommand\hbseries
+{\not@math@alphabet\hbseries\relax
+\fontseries\hbdefault\selectfont}
+\newcommand{\hbdefault}{hb}
+\DeclareTextFontCommand{\texthb}{\hbseries}
+\makeatother
+\newcommand*{\titleIP}{\begingroup
+\begin{center}
+\psvectorian[scale=0.85]{86}\\[\baselineskip]
+{\Huge Theoretical Foundations of Semiclassical Gravity}\\[\baselineskip]
+\psvectorian[scale=0.85]{86}\\
+\vspace{1cm}
+{\LARGE Carlos Henrique Correr\orcidlink{0000-0002-3598-4412}\vspace{\baselineskip}}
+\vfill
+\plogo \\[\baselineskip]
+\psvectorian[scale=1.5]{123}
+\end{center}
+\endgroup}
+
+%ambientes
+\newtheoremstyle{mystyle}%
+  {}%
+  {}%
+  {}%
+  {}%
+  {\sffamily\bfseries}%
+  {.}%
+  { }%
+  {}%
+
+\renewenvironment{proof}{{\sffamily\bfseries Proof. }}{\qed}
+
+\theoremstyle{mystyle}{
+  \newtheorem*{remark}{Remark}
+}
+
+\theoremstyle{mystyle}{
+  \newtheorem{definition}{Definition}[chapter]
+}
+
+\theoremstyle{mystyle}{
+  \newtheorem{theorem}{Theorem}[chapter]
+}
+
+\theoremstyle{mystyle}{
+  \newtheorem{lemma}[theorem]{Lemma}
+}
+
+\theoremstyle{mystyle}{
+  \newtheorem*{example}{Example}
+}
+
+\theoremstyle{definition}{
+    \newtheorem*{exercise}{Exercise}}
+
+
+\tcolorboxenvironment{definition}{
+  boxrule=0pt,
+  boxsep=0pt,
+  colback={white!90!blue},
+  enhanced jigsaw, 
+  borderline west={2pt}{0pt}{blue},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  breakable,
+}
+
+\tcolorboxenvironment{theorem}{
+  boxrule=0pt,
+  boxsep=0pt,
+  colback={white!90!magenta},
+  enhanced jigsaw, 
+  borderline west={2pt}{0pt}{magenta},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  breakable,
+}
+
+\tcolorboxenvironment{lemma}{
+  boxrule=0pt,
+  boxsep=0pt,
+  blanker,
+  borderline west={2pt}{0pt}{Red},
+  before skip=10pt,
+  after skip=10pt,
+  sharp corners,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{proof}{
+  boxrule=0pt,
+  boxsep=0pt,
+  blanker,
+  borderline west={2pt}{0pt}{NavyBlue!80!white},
+  before skip=10pt,
+  after skip=10pt,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{remark}{
+  boxrule=0pt,
+  boxsep=0pt,
+  blanker,
+  borderline west={2pt}{0pt}{Green},
+  before skip=10pt,
+  after skip=10pt,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+\tcolorboxenvironment{example}{
+  boxrule=0pt,
+  boxsep=0pt,
+  blanker,
+  borderline west={2pt}{0pt}{Black},
+  sharp corners,
+  before skip=10pt,
+  after skip=10pt,
+  left=12pt,
+  right=12pt,
+  breakable,
+}
+
+
+\newcommand{\mn}[1]{\textsuperscript{\thesidenote}{}\marginnote{\textsuperscript{\thesidenote}{}~\itshape\footnotesize #1}\refstepcounter{sidenote}}
+\newcommand{\en}[1]{\marginnote{\footnotesize #1}}
+\newcommand{\sn}[1]{\sidenote{\itshape\footnotesize #1}}
+
+\newcommand*\widefbox[1]{\fbox{\hspace{2em}#1\hspace{2em}}}
+\newcommand{\xint}{\int_{x_1}^{x_2}}
+\newcommand{\tint}{\int_{t_1}^{t_2}}
+\newcommand{\mw}{\sqrt{m\omega}}
+\newcommand{\de}{\delta}
+\newcommand{\dde}{\dot{\delta}}
+\newcommand{\di}{\delta_i}
+\newcommand{\ddi}{\dot{\delta_i}}
+\newcommand{\dddi}{\ddot{\delta_i}}
+\newcommand{\dipl}{\delta_{i+1}}
+\newcommand{\dimi}{\delta_{i-1}}
+\newcommand{\ddt}[1]{\frac{{d} #1}{dt}}
+\newcommand{\ddtt}[1]{\frac{d^2 #1}{dt^2}}
+\newcommand{\ddx}[1]{\frac{d #1}{dx}}
+\newcommand{\ddxx}[1]{\frac{d^2 #1}{dx^2}}
+\newcommand{\eps}{\epsilon}
+\newcommand{\del}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\deltwo}[2]{\frac{\partial^2 #1}{\partial #2^2}}
+\newcommand{\lam}{\lambda}
+\newcommand{\Lam}{\Lambda}
+\newcommand{\sig}{\sigma}
+\newcommand{\Sig}{\Sigma}
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\munu}{{\mu\nu}}
+\newcommand{\thalf}{\tfrac{1}{2}}
+
+\newcommand{\bfA}{{\bf A}}
+\newcommand{\bfB}{{\bf B}}
+\newcommand{\bfC}{{\bf C}}
+\newcommand{\bfD}{{\bf D}}
+\newcommand{\bfE}{{\bf E}}
+\newcommand{\bfF}{{\bf F}}
+\newcommand{\bfG}{{\bf G}}
+\newcommand{\bfH}{{\bf H}}
+\newcommand{\bfI}{{\bf I}}
+\newcommand{\bfJ}{{\bf J}}
+\newcommand{\bfK}{{\bf K}}
+\newcommand{\bfL}{{\bf L}}
+\newcommand{\bfM}{{\bf M}}
+\newcommand{\bfN}{{\bf N}}
+\newcommand{\bfO}{{\bf O}}
+\newcommand{\bfP}{{\bf P}}
+\newcommand{\bfQ}{{\bf Q}}
+\newcommand{\bfR}{{\bf R}}
+\newcommand{\bfS}{{\bf S}}
+\newcommand{\bfT}{{\bf T}}
+\newcommand{\bfU}{{\bf U}}
+\newcommand{\bfV}{{\bf V}}
+\newcommand{\bfW}{{\bf W}}
+\newcommand{\bfX}{{\bf X}}
+\newcommand{\bfY}{{\bf Y}}
+\newcommand{\bfZ}{{\bf Z}}
+
+\newcommand{\bfa}{{\bf a}}
+\newcommand{\bfb}{{\bf b}}
+\newcommand{\bfc}{{\bf c}}
+\newcommand{\bfd}{{\bf d}}
+\newcommand{\bfe}{{\bf e}}
+\newcommand{\bff}{{\bf f}}
+\newcommand{\bfg}{{\bf g}}
+\newcommand{\bfh}{{\bf h}}
+\newcommand{\bfi}{{\bf i}}
+\newcommand{\bfj}{{\bf j}}
+\newcommand{\bfk}{{\bf k}}
+\newcommand{\bfl}{{\bf l}}
+\newcommand{\bfm}{{\bf m}}
+\newcommand{\bfn}{{\bf n}}
+\newcommand{\bfo}{{\bf o}}
+\newcommand{\bfp}{{\bf p}}
+\newcommand{\bfq}{{\bf q}}
+\newcommand{\bfr}{{\bf r}}
+\newcommand{\bfs}{{\bf s}}
+\newcommand{\bft}{{\bf t}}
+\newcommand{\bfu}{{\bf u}}
+\newcommand{\bfv}{{\bf v}}
+\newcommand{\bfw}{{\bf w}}
+\newcommand{\bfx}{{\bf x}}
+\newcommand{\bfy}{{\bf y}}
+\newcommand{\bfz}{{\bf z}}
+
+\newcommand{\mcA}{{\mathcal{A}}}
+\newcommand{\mcB}{{\mathcal{B}}}
+\newcommand{\mcC}{{\mathcal{C}}}
+\newcommand{\mcD}{{\mathcal{D}}}
+\newcommand{\mcE}{{\mathcal{E}}}
+\newcommand{\mcF}{{\mathcal{F}}}
+\newcommand{\mcG}{{\mathcal{G}}}
+\newcommand{\mcH}{{\mathcal{H}}}
+\newcommand{\mcI}{{\mathcal{I}}}
+\newcommand{\mcJ}{{\mathcal{J}}}
+\newcommand{\mcK}{{\mathcal{K}}}
+\newcommand{\mcL}{{\mathcal{L}}}
+\newcommand{\mcM}{{\mathcal{M}}}
+\newcommand{\mcN}{{\mathcal{N}}}
+\newcommand{\mcO}{{\mathcal{O}}}
+\newcommand{\mcP}{{\mathcal{P}}}
+\newcommand{\mcQ}{{\mathcal{Q}}}
+\newcommand{\mcR}{{\mathcal{R}}}
+\newcommand{\mcS}{{\mathcal{S}}}
+\newcommand{\mcT}{{\mathcal{T}}}
+\newcommand{\mcU}{{\mathcal{U}}}
+\newcommand{\mcV}{{\mathcal{V}}}
+\newcommand{\mcW}{{\mathcal{W}}}
+\newcommand{\mcX}{{\mathcal{X}}}
+\newcommand{\mcY}{{\mathcal{Y}}}
+\newcommand{\mcZ}{{\mathcal{Z}}}
+
+\newcommand{\bbA}{{\mathbb{A}}}
+\newcommand{\bbB}{{\mathbb{B}}}
+\newcommand{\bbC}{{\mathbb{C}}}
+\newcommand{\bbD}{{\mathbb{D}}}
+\newcommand{\bbE}{{\mathbb{E}}}
+\newcommand{\bbF}{{\mathbb{F}}}
+\newcommand{\bbG}{{\mathbb{G}}}
+\newcommand{\bbH}{{\mathbb{H}}}
+\newcommand{\bbI}{{\mathbb{I}}}
+\newcommand{\bbJ}{{\mathbb{J}}}
+\newcommand{\bbK}{{\mathbb{K}}}
+\newcommand{\bbL}{{\mathbb{L}}}
+\newcommand{\bbM}{{\mathbb{M}}}
+\newcommand{\bbN}{{\mathbb{N}}}
+\newcommand{\bbO}{{\mathbb{O}}}
+\newcommand{\bbP}{{\mathbb{P}}}
+\newcommand{\bbQ}{{\mathbb{Q}}}
+\newcommand{\bbR}{{\mathbb{R}}}
+\newcommand{\bbS}{{\mathbb{S}}}
+\newcommand{\bbT}{{\mathbb{T}}}
+\newcommand{\bbU}{{\mathbb{U}}}
+\newcommand{\bbV}{{\mathbb{V}}}
+\newcommand{\bbW}{{\mathbb{W}}}
+\newcommand{\bbX}{{\mathbb{X}}}
+\newcommand{\bbY}{{\mathbb{Y}}}
+\newcommand{\bbZ}{{\mathbb{Z}}}
+
+\newcommand{\mfa}{{\mathfrak{a}}}
+\newcommand{\mfb}{{\mathfrak{b}}}
+\newcommand{\mfc}{{\mathfrak{c}}}
+\newcommand{\mfd}{{\mathfrak{d}}}
+\newcommand{\mfe}{{\mathfrak{e}}}
+\newcommand{\mff}{{\mathfrak{f}}}
+\newcommand{\mfg}{{\mathfrak{g}}}
+\newcommand{\mfh}{{\mathfrak{h}}}
+\newcommand{\mfi}{{\mathfrak{i}}}
+\newcommand{\mfj}{{\mathfrak{j}}}
+\newcommand{\mfk}{{\mathfrak{k}}}
+\newcommand{\mfl}{{\mathfrak{l}}}
+\newcommand{\mfm}{{\mathfrak{m}}}
+\newcommand{\mfn}{{\mathfrak{n}}}
+\newcommand{\mfo}{{\mathfrak{o}}}
+\newcommand{\mfp}{{\mathfrak{p}}}
+\newcommand{\mfq}{{\mathfrak{q}}}
+\newcommand{\mfr}{{\mathfrak{r}}}
+\newcommand{\mfs}{{\mathfrak{s}}}
+\newcommand{\mft}{{\mathfrak{t}}}
+\newcommand{\mfu}{{\mathfrak{u}}}
+\newcommand{\mfv}{{\mathfrak{v}}}
+\newcommand{\mfw}{{\mathfrak{w}}}
+\newcommand{\mfx}{{\mathfrak{x}}}
+\newcommand{\mfy}{{\mathfrak{y}}}
+\newcommand{\mfz}{{\mathfrak{z}}}
+
+\newcommand{\mfA}{{\mathfrak{A}}}
+\newcommand{\mfB}{{\mathfrak{B}}}
+\newcommand{\mfC}{{\mathfrak{C}}}
+\newcommand{\mfD}{{\mathfrak{D}}}
+\newcommand{\mfE}{{\mathfrak{E}}}
+\newcommand{\mfF}{{\mathfrak{F}}}
+\newcommand{\mfG}{{\mathfrak{G}}}
+\newcommand{\mfH}{{\mathfrak{H}}}
+\newcommand{\mfI}{{\mathfrak{I}}}
+\newcommand{\mfJ}{{\mathfrak{J}}}
+\newcommand{\mfK}{{\mathfrak{K}}}
+\newcommand{\mfL}{{\mathfrak{L}}}
+\newcommand{\mfM}{{\mathfrak{M}}}
+\newcommand{\mfN}{{\mathfrak{N}}}
+\newcommand{\mfO}{{\mathfrak{O}}}
+\newcommand{\mfP}{{\mathfrak{P}}}
+\newcommand{\mfQ}{{\mathfrak{Q}}}
+\newcommand{\mfR}{{\mathfrak{R}}}
+\newcommand{\mfS}{{\mathfrak{S}}}
+\newcommand{\mfT}{{\mathfrak{T}}}
+\newcommand{\mfU}{{\mathfrak{U}}}
+\newcommand{\mfV}{{\mathfrak{V}}}
+\newcommand{\mfW}{{\mathfrak{W}}}
+\newcommand{\mfX}{{\mathfrak{X}}}
+\newcommand{\mfY}{{\mathfrak{Y}}}
+\newcommand{\mfZ}{{\mathfrak{Z}}}
+
+
+
+\begin{document}
+
+\begin{titlepage}
+    \pagestyle{empty}
+    \titleIP
+    \clearpage
+\end{titlepage}
+
+\tableofcontents
+
+\include{chapters/1.introduction}
+
+\end{document}
