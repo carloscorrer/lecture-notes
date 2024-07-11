@@ -837,3 +837,551 @@ Thereby, is evident the dependence of the expected values of the theory with the
 \end{center}
 
 \chapter{Particle concept}
+
+Throughout this chapter we will show that when symmetries are present in the spacetime, we can use them to construct a "natural" choice of Hilbert space for the quantization and apply it to a static spacetimes. Often this construction allows us to gives rise to the concept of particles of the field, hence we also cover a two-level particle detector. Finally, we discuss Boguliubov transformations, that is a map between two constructions of the quantum theories.
+
+\section{Stationary spacetimes}
+Let \((\mcM,g_{ab})\) is a globally hyperbolic stationary spacetime, i.e., it admits a timelike Killing field \(\xi^a\) that is associated with a one parameter group of isometries \(\phi_t^{\xi}:\mcM\to\mcM\) with timelike orbits. The choice of \(\mcH\) will be the one of solutions that are positive frequency with respect to the Killing time \(t\), a function such that
+\begin{equation}
+    \xi^a\nabla_a t=1,
+\end{equation}
+i.e., \(\xi^a\) plays the role of \(t^a\) in the previous construction. To avoid technical difficulties, we impose
+\begin{equation}\label{eq:cond1}
+    m>0,
+\end{equation}
+and thata exists a Cauchy surface \(\Sig\) such that, \(\exists\epsilon>0\),
+\begin{equation}
+    -\xi^a\xi_a\geq-\epsilon\xi^an_a>\epsilon,
+    \label{eq:cond2}
+\end{equation}
+in this surface, where \(n^a\) is the vector normal to \(\Sig\). We define the "energy" inner product in \(\mcS^\bbC\) as
+\begin{equation}
+    \langle\psi_1,\psi_2\rangle_{\xi}\equiv\int_{\Sigma}\rmd^3x\sqrt{h}\xi^an^bT_{ab},
+\end{equation}
+where \(T_{ab}\) is classical stress-energy tensor given by
+\begin{equation}
+    T_{ab}(\psi_1,\psi_2)=\nabla_{(a}\overline{\psi}_1\nabla_{b)}\psi_2-\frac{1}{2}g_{ab}\left(\nabla^c\overline{\psi}_1\nabla_c\psi_2+m^2\overline{\psi}_1\psi_2\right).
+\end{equation}
+
+By the definition, it is immediate that
+\begin{equation}
+    \innerxi{\psi_1}{\psi_2}=\overline{\innerxi{\psi_2}{\psi_1}}.
+\end{equation}
+
+\begin{proposition}\label{prop:xi-positivo}
+    The inner product \(\innerxi{\cdot}{\cdot}\) is positive-definite in \(\mcS^\bbC\).
+\end{proposition}
+\begin{proof}
+    First, we have the following definitions that help in the calculation. Let \(\psi\in\mcS^\bbC\), then
+    \begin{equation}
+        \begin{cases}
+            \nabla_a\psi=-(n^b\nabla_b\psi)n_a+h_a^b\nabla_b\psi\equiv-\psi_nn_a+D_a\psi\\
+            \xi^a=-(\xi^bn_b)n^a+h^{ab}\xi_b\equiv N_{\xi}n^a+N^a
+        \end{cases}.
+    \end{equation}
+
+    Therefore, if we write the stress-energy tensor as function of the new parameters, we have
+    \begin{equation}
+        \nabla_{(a}\overline{\psi}\nabla_{b)}\psi=\overline{\psi}_n\psi_nn_an_b-\overline{\psi}_nn_{(a}D_{b)}\psi-\psi_nD_{(a}\overline{\psi}n_{b)}+D_{(a}\overline{\psi}D_{b)}\psi,
+    \end{equation}
+    and also,
+    \begin{subequations}
+        \begin{align}
+            \nabla^c\overline{\psi}\nabla_c\psi&=\left(-\overline{\psi}_nn^c+D^c\overline{\psi}\right)\left(-\psi_nn_c+D_c\psi\right)\\
+            &=-\overline{\psi_n}\psi_n+D^c\overline{\psi}D_c\psi.
+        \end{align}
+    \end{subequations}
+
+    Now, we can calculate the integrand of the inner product,
+    \begin{subequations}
+        \begin{align}
+            \xi^an^bT_{ab}&=\frac{1}{2}\left[2N_\xi\overline{\psi}_n\psi_n+\overline{\psi}_nN^bD_b\psi+\psi_nN^aD_a\psi\right]\\
+            &-\frac{\xi^bn_b}{2}\left[-\overline{\psi}_n\psi_n+D^c\overline{\psi}D_c\psi+m^2\overline{\psi}\psi\right]\\
+            &=\frac{N_\xi}{2}\left[\overline{\psi}_n\psi_n D^c\overline{\psi}D_c\psi+m^2\overline{\psi}\psi\right]\\
+            &+\frac{1}{2}\left[\overline{\psi}_nN^bD_b\psi+\psi_nN^aD_a\overline{\psi}\right].
+        \end{align}
+    \end{subequations}
+
+    Remember that the momentum density is given by \cref{eq:pi}, then
+    \begin{subequations}
+        \begin{align}
+            \innerxi{\psi}{\psi}&=\int_{\Sigma}\rmd^3x\sqrt{h}\xi^an^bT_{ab}(\psi,\psi)\\
+            &=\frac{1}{2}\int_{\Sigma}\rmd^3x \left[N_{\xi}\frac{\lvert\pi\rvert^2}{\sqrt{h}}+\sqrt{h}N_\xi\lVert D\psi\rVert^2+\sqrt{h}m^2\lvert\psi\rvert^2\right]\\
+            &+\frac{1}{2}\int_{\Sigma}\rmd^3x\left[\frac{\pi}{N_\xi}N^a\nabla_a\overline{\psi}+\frac{\overline{\pi}}{N_\xi}N^a\nabla_a\psi\right]\\
+            &=\frac{1}{2}\int_{\Sigma}\rmd^3xN_\xi\left[\left(1-\frac{N^aN_a}{N^2_\xi}\right)\frac{\lvert\pi\rvert^2}{\sqrt{h}}+\sqrt{h}m^2\lvert\psi\rvert^2\right]\\
+            &+\frac{1}{2}\int_{\Sigma}\rmd^3xN_\xi\sqrt{h}h^{ab}\left(D_a\psi+\frac{\pi N_a}{\sqrt{h}N_\xi}\right)\left(D_b\overline{\psi}+\frac{\overline{\pi}N_b}{\sqrt{h}N_\xi}\right)\\
+            &=\frac{1}{2}\int_{\Sigma}\rmd^3xN_\xi\left[-\frac{\xi^a\xi_a}{N_\xi^2}\frac{\lvert\pi\rvert^2}{\sqrt{h}}+\sqrt{h}m^2\lvert\psi\rvert^2\right]\\
+            &+\frac{1}{2}\int_{\Sigma}\rmd^3xN_\xi\sqrt{h}\bigg\Vert D_a\psi+\frac{\pi N_a}{\sqrt{h}N_\xi}\bigg\Vert^2.
+        \end{align}
+    \end{subequations}
+
+    It is immediate that
+    \begin{equation}
+        \psi=0\iff\innerxi{\psi}{\psi}=0,
+    \end{equation}
+    then take \(\psi\neq 0\), using \cref{eq:cond1,eq:cond2},
+    \begin{subequations}
+        \begin{align}
+            \innerxi{\psi}{\psi}&\geq\epsilon\int_{\Sigma}\frac{\rmd^3x}{2}\left(\frac{\lvert\pi\rvert^2}{\sqrt{h}}+m^2\lvert\psi\rvert^2\right)\\
+            &\geq\frac{1}{2}\min{\{\epsilon,m^2\epsilon\}}\int_{\Sigma}\rmd^3x\sqrt{h}\left[\lvert n^a\nabla_a\rvert^2+\lvert\psi\rvert^2\right]>0.
+        \end{align}
+    \end{subequations}
+\end{proof}
+
+Now, we will perform auxiliary calculations to show that the inner product is independent of the Cauchy surface \(\Sig\) we ue calculate it. First, notice that for \(\psi_1,\psi_2\in\mcS^\bbC\), as expected of a stress-energy tensor,
+\begin{subequations}
+    \begin{align}
+        2\nabla^aT_{ab}&=\nabla^a\left[\nabla_a\overline{\psi}_1\nabla_b\psi_2+\nabla_b\overline{\psi}_1\nabla_a\psi_2\right]-g_{ab}\nabla^a\left[\nabla^c\overline{\psi}_1\nabla_c\psi_2+m^2\overline{\psi}_1\psi_2\right]\\
+        &=\nabla^a\nabla_a\overline{\psi}_1\psi_2+\nabla_ a\overline{\psi}_1\nabla^a\nabla_b\psi_2+\nabla^a\nabla_b\overline{\psi}_1\nabla_a\psi_2+\nabla_b\overline{\psi}_1\nabla^a\nabla_a\psi_2\\
+        &-g_{ab}\left[\nabla^a\nabla^c\overline{\psi}_1\nabla_c\psi_2+\nabla^c\overline{\psi}_1\nabla^a\nabla_c\psi_2+m^2\nabla^a\overline{\psi}_1\psi_2+m^2\overline{\psi_1}\nabla^a\psi_2\right]\\
+        &=m^2\overline{\psi}_1\nabla_b\psi_2+\nabla^a\overline{\psi}_1\nabla_a\nabla_b\psi_2+\nabla^a\psi_2+\nabla_a\nabla_b\overline{\psi}_1+m^2\nabla_b\overline{\psi}_1\psi_2\\
+        &-\nabla^c\psi_2\nabla_c\nabla_b\overline{\psi}_1-\nabla^c\overline{\psi}_1\nabla_c\nabla_b\psi_2-m^2\nabla_b\overline{\psi}_1\psi_2-m^2\overline{\psi}_1\nabla_b\psi_2\\
+        &=0.
+    \end{align}
+\end{subequations}
+
+From the previous result, follows that
+\begin{subequations}
+    \begin{align}
+        \nabla^a\left(T_{ab}\xi^b\right)&=\nabla^aT_{ab}\xi^b+T_{ab}\nabla^a\xi^b\\
+        &=T_{ab}\nabla^{(a}\xi^{b)}\\
+        &=0.
+    \end{align}
+\end{subequations}
+
+Thus, consider a region \(\mcV\) confined by two Cauchy surfaces \(\Sig_{t_1}\) and \(\Sig_{t_2}\), then
+\begin{subequations}
+    \begin{align}
+        \int_{\Sigma_{t_2}}\rmd^3x\sqrt{h}\xi^an^bT_{ab}-\int_{\Sigma_{t_1}}\rmd^3x\sqrt{h}\xi^an^bT_{ab}&=\int_{\partial{\mathcal{V}}}\rmd^3x\sqrt{h}\xi^an^bT_{ab}\\
+        &=\int_{\mathcal{V}}\rmd^4\sqrt{-g}\nabla^b\left(\xi^aT_{ab}\right)\\
+        &=\int_{\mathcal{V}}\rmd^4\sqrt{-g}\nabla^b\left(T_{ba}\xi^a\right)\\
+        &=0,
+    \end{align}
+\end{subequations}
+i.e., the inner product is identical for any smooth Cauchy surfaces of the one parameters group associated with \(\xi^a\). Now, we complete the solution space with this inner product to obtain the Hilbert space \(\tilde{\mcH}\).
+
+Define the operator \(V_t:\tilde{\mcH}\to\tilde{\mcH}\) as
+\begin{equation}
+    V_t\psi\equiv\psi\circ\phi^{\xi}_{-t},
+\end{equation}
+notice that the invariance under time translation of the inner product implies that this operator is unitary. As a consequence, vy Stone theorem,
+\begin{equation}
+    V_t=e^{-i\tilde{h}t},
+\end{equation}
+where \(\tilde{h}\) is a self-adjoit operator. From the definition, we have
+\begin{subequations}
+    \begin{align}
+        \tilde{h}\psi&=i\diff{}{t}V_t\psi\bigg\vert_{t=0}\\
+        &=i\diff{}{t}\psi\circ\phi^{\xi}_{-t}\bigg\vert_{t=0}\\
+        &=i\mathcal{L}_{\xi}\psi,
+    \end{align}
+\end{subequations}
+where \(\mcL_\xi\) is the Lie derivative with respect to the vector field \(\xi^a\).
+
+Henceforth, we will use the identification between the solution space and the phase space. First, we define \(B:\mcS^\bbC\times\mcS^\bbC\to\bbC\) as
+\begin{equation}
+    B(\psi_1,\psi_2)\equiv \Omega\left(\overline{\psi}_1,\psi_2\right)
+\end{equation}
+
+\begin{remark}
+    Notice that \(\kg{\psi_1}{\psi_2}=-iB(\psi_1,\psi_2)\).
+\end{remark}
+
+We represent an element of the phase space by
+\begin{equation}
+    \psi=\begin{pmatrix}
+        \phi\\
+        \pi
+    \end{pmatrix},
+\end{equation}
+with inner product given by
+\begin{equation}
+    \langle\psi_1,\psi_2\rangle_{L^2}=\int_{\Sigma}\rmd^3x
+    \begin{pmatrix}
+        \overline{\phi}_1&\overline{\pi}_1
+    \end{pmatrix}
+    \begin{pmatrix}
+        \phi_2\\
+        \pi_2
+    \end{pmatrix}=\int_{\Sigma}\rmd^3x\left(\overline{\phi}_1\phi_2+\overline{\pi}_1\pi_2\right).
+\end{equation}
+
+Notice that, given the matrix
+\begin{equation}
+    \begin{pmatrix}
+        0&-1\\
+        1&0
+    \end{pmatrix},
+\end{equation}
+we have
+\begin{subequations}
+    \begin{align}
+        \langle\psi_1,J\psi_2\rangle_{L^2}&=\int_{\Sigma}\rmd^3x
+        \begin{pmatrix}
+            \overline{\phi}_1&\overline{\pi}_1
+        \end{pmatrix}
+        \begin{pmatrix}
+            0&-1\\
+            1&0
+        \end{pmatrix}
+        \begin{pmatrix}
+            \phi_2\\
+            \pi_2
+        \end{pmatrix}\\
+        &=\int_{\Sigma}\rmd^3x(\overline{\pi}_1\phi_2-\pi_2\overline{\phi}_1)\\
+        &=\Omega\left(\overline{\phi_1},\phi_2\right).
+    \end{align}
+\end{subequations}
+
+Furthermore, as shown in \cref{prop:xi-positivo},
+\begin{equation}
+    \innerxi{\psi}{\psi}\geq C^{-1}\langle\psi,\psi\rangle_{L^2},
+\end{equation}
+with \(C^{-1}=1/2\min{\{\epsilon,m^2\epsilon\}}\), then
+\begin{equation}
+    \lVert\psi\rVert_{L^2}\leq C^{1/2}\lVert\psi\rVert_{\xi}.
+\end{equation}
+
+Moreover, notice that \(J\) is norm preserving in the phase space,
+\begin{subequations}
+    \begin{align}
+        \lVert J\psi\rVert^2_{L^2}&=\langle J\psi,J\psi\rangle_{L^2}\\
+        &=\int_{\Sigma}\rmd^3x
+        \begin{pmatrix}
+            -\overline{\pi}&\overline{\phi}
+        \end{pmatrix}
+        \begin{pmatrix}
+            -\pi\\
+            \psi
+        \end{pmatrix}\\
+        &=\int_{\Sigma}\rmd^3x\left(\lVert\phi\rVert^2+\lVert\pi\rVert^2\right)\\
+        &=\lVert\psi\rVert^2.
+    \end{align}
+\end{subequations}
+
+Therefore, due to the Cauchy-Schwartz,
+\begin{subequations}\label{eq:schwartz-inequality}
+    \begin{align}
+        \lvert B(\psi_1,\psi_2)\rvert&=\lvert\Omega\left(\overline{\psi}_1,\psi_2\right)\rvert\\
+        &=\lvert\langle\psi_1,J\psi_2\rangle_{L^2}\rvert\\
+        &\leq\lVert\psi_1\rVert_{L^2}\lVert\psi_2\rVert_{L^2}\\
+        &\leq C\lVert\psi_1\rVert_\xi\lVert\psi_2\rVert_\xi.
+    \end{align}
+\end{subequations}
+
+Thus, \(B\) is bounded and defined in a dense domain of \(\tilde{\mcH}\), hecnce we can extend it's action to this set as a bounded operator.
+\begin{proposition}
+    For every \(\psi_1,\psi_2\in\mcS^\bbC\),
+    \begin{equation}
+        B(\psi_1,\tilde{h}\psi_2)=2i\innerxi{\psi_1}{\psi_2}.
+    \end{equation}
+\end{proposition}
+\begin{proof}
+    show it!
+\end{proof}
+
+Finally, notice that the Klein-Gordon, then
+\begin{equation}
+    \langle\psi_1,\tilde{h}\psi_2\rangle=2\innerxi{\psi_1}{\psi_2}.
+\end{equation}
+
+Therefore, due to \cref{eq:schwartz-inequality}, we have
+\begin{equation}
+    2\lvert\innerxi{\psi_1}{\psi_2}\rvert=\lvert\langle\psi_1,\tilde{h}\psi_2\rangle\rvert\leq C\lVert\psi_1\rVert_\xi\lVert\tilde{h}\psi_2\rVert_\xi.
+\end{equation}
+
+In particular, for \(\psi\neq 0\),
+\begin{equation}
+    2\lVert\psi\rVert^2_{\xi}\leq C\lVert\psi\rVert_\xi\lVert\tilde{h}\psi\rVert_\xi\implies \frac{\lVert\tilde{h}\psi\rVert_\xi}{\lVert\psi\rVert_\xi}\geq\frac{2}{C}>0.
+\end{equation}
+
+We conclude that the infimum of the spectrum of \(\tilde{h}\), \(\sig\), is greater than zero, hence \(\tilde{h}^{-1}\) is well defined in a dense domain of \(\tilde{\mcH}\). Therefore, from the spectral theorem, we have
+\begin{equation}
+    \tilde{h}=\int_{\omega\in\sigma^+}\omega\rmd P_\omega+\int_{\omega\in\sigma^-}\omega\rmd P_\omega,
+\end{equation}
+where
+\begin{equation}
+    \begin{cases}
+        \sigma=\sigma^+\cup\sigma^-\\
+        \sigma^+=-\sigma^-\\
+        \sigma^+\cap\sigma^-=\varnothing
+    \end{cases}.
+\end{equation}
+
+Let \(\tilde{\mcH}^+\) be the space associated with the solutions that lies in \(\sig^+\) completed with Klein-Gordon product. It is evident that the map that projects in this space is
+\begin{equation}
+    K=\int_{\omega\in\sigma^+}\rmd P_{\omega}.
+\end{equation}
+
+At last, for every \(\psi_1,\psi_2\in\mcS\), we define the map \(\mu\) as
+\begin{equation}
+    \mu(\psi_1,\psi_2)=\text{Im}B(K\psi_1,K\psi_2)=2\text{Re}\left\langle K\psi_1,\tilde{h}^{-1}K\psi_2\right\rangle_\xi.
+\end{equation}
+\begin{proposition}
+    The product \(\mu\) satisfies the condition given in \cref{eq:omega-bounded}.
+\end{proposition}
+\begin{proof}
+    show it!
+\end{proof}
+
+Finally, we introduce a convenient notation. Let \(\Lam,\mu\) be a measure sapce in which \(j\in\Lam\) represents a set of quantum numbers. Then, it is possivle to choose an orthonormal basis \(\{u_j\}_{j\in\Lam}\) of the solutions of Klein-Gordon equations such that
+\begin{equation}
+    \tilde{h}u_j=\omega_j u_j\iff u_j=\frac{e^{-i\omega_jt}}{\sqrt{\omega_j}}\varphi_j,
+\end{equation}
+and also
+\begin{equation}
+    \langle u_j,u_{j'}\rangle=\delta_{\mu}(j,j'),
+\end{equation}
+where
+\begin{equation}
+    \int_{j\in\Lambda}\rmd\mu(j')\delta_\mu(j,j')=1.
+\end{equation}
+
+Thus, any solution \(\psi\in\tilde{\mcH}^+\) can be written as 
+\begin{equation}
+    \psi(x)=\int_{j\in\Lambda}\rmd\mu(j)\tilde{\psi}(j)\frac{e^{-i\omega_jt}}{\sqrt{2\omega_j}}\varphi_j(x).
+\end{equation}
+
+Now, it is evident that the space \(\tilde{\mcH}^+\) concerns the positive frequency solutions with respect to the Killing field \(\xi=\partial_t\). 
+
+\section{Quantization is static spacetimes}
+
+Let \((\mcM,g_{ab})\) be globally hyperbolic and static spacetime, i.e., stationary that admits an hypersurface orthogonal to \(\xi\). Under these conditions, exists a coordinate system in which the line element is expressed as
+\begin{equation}
+    \rmd s^2=-f(x)\rmd t^2+\sum_{i,j}h_{ij}(x)\rmd x^i\rmd x^j,
+\end{equation}
+where \(f(x)>0\) and \(x\) represents the coordiantes in the Cauchy surfaces \(\Sig_t\). The vector field \(\xi=\partial_t\) is a Killing one and timelike. Furthermore, it's integral curves are given by \(\phi_t(t_1,x_1)=(t+t_1,)\), i.e., they represent time translation. Since they are timelike, we can interpret them as the worldline of a congruence of observers.
+
+In an arbitrary coordinate system, Klein-Gordon equation is
+\begin{equation}
+    \frac{1}{\sqrt{-g}}\sum_{\mu,\nu}\diffp{}{x^{\mu}}\left(\sqrt{-g}g^{\mu\nu}\diffp{\phi}{x^\nu}\right)-m^2\phi=0.
+\end{equation}
+
+In the static coordinates, for \(\mu=0\), we have
+\begin{equation}
+    \frac{1}{\sqrt{-g}}\diffp{}{t}\left(\sqrt{-g}g^{0\nu}\diffp{\phi}{x^\nu}\right)=-f^{-1}\diffp[2]{\phi}{t,}
+\end{equation}
+thus, the equation is
+\begin{equation}
+    \left(-\diffp[2]{}{t}-\mcK\right)\phi=0,
+\end{equation}
+where
+\begin{equation}\label{eq:def-mcK}
+    \mcK\phi\equiv f\left[-\frac{1}{\sqrt{-g}}\sum_{i,j}\diffp{}{x^i}\left(\sqrt{-g}h^{ij}\diffp{\phi}{x^j}\right)+m^2\phi\right],
+\end{equation}
+denotes the purely spatial operator.
+\begin{proposition}
+    The operator \(\mcK\) is hermitian in \(L^2\left(\Sig_t,\sqrt{-g}f^{-1}\rmd x\right)\).
+\end{proposition}
+\begin{proof}
+    The statement comes from a direct computation
+    \begin{subequations}
+        \begin{align}
+            \langle\mcK\phi_1,\phi_2\rangle_{L^2}&=\int_{\Sig_t}\rmd^3x\sqrt{-g}f^{-1}f\left[-\frac{1}{\sqrt{-g}}\sum_{i,j}\diffp{}{x^i}\left(\sqrt{-g}h^{ij}\diffp{\overline{\phi}_1}{x^j}\right)+m^2\overline{\phi}_1\right]\phi_2\\
+            &=\int_{\Sig_t}\rmd^3x\left[\sum_{i,j}\sqrt{-g}h^{ij}\diffp{\phi_2}{x^i}\diffp{\overline{\phi}_1}{x^j}+\sqrt{-g}m^2\overline{\phi}_1\phi_2\right]\\
+            &-\int_{\partial\Sig_t}\rmd^2x\sum_{i,j}\sqrt{-g}h^{ij}\phi_2\diffp{\overline{\phi}_1}{x^j}n_i\\
+            &=\int_{\Sig_t}\rmd^3x\left[-\sum_{i,j}\overline{\phi}_1\diffp{}{x^j}\left(\sqrt{-g}h^{ij}\diffp{\phi_2}{x^i}\right)+\sqrt{-g}m^2\overline{\phi}_1\phi_2\right]\\
+            &+\int_{\partial\Sig_t}\rmd^2x\sum_{i,j}\sqrt{-g}h^{ij}\overline{\phi}_1\diffp{\phi_2}{x^i}n_j\\
+            &=\int_{\Sig_t}\rmd^3x\sqrt{-g}f^{-1}\overline{\phi}_1f\left[-\frac{1}{\sqrt{-g}}\sum_{i,j}\diffp{}{x^i}\left(\sqrt{-g}h^{ij}\diffp{\phi_2}{x^j}\right)+m^2\phi_2\right]\\
+            &=\langle\phi_1,\mcK\phi_2\rangle_{L^2}
+        \end{align}
+    \end{subequations}
+\end{proof}
+
+In general, \(\mcK\) is a function of a complete set o operators, \(\mcT\), that commute. Let \(\mcJ\) be the spectrum of these set of operators, \(\mu\) a measure in \(\mcJ\) and \(\psi_j\), \(j\in\mcJ\), eigenfunctions of \(\mcK\) with eigenvalues \(\omega_j^2>0\), i.e.,
+\begin{equation}
+    \mcK\psi_j=\omega_j^2\psi_j,
+\end{equation}
+that satisfy
+\begin{equation}
+    \int_{\Sig_t}\rmd^3x\sqrt{-g}f^{-1}\overline{\psi}_j(x)\psi_{j'}(x)=\delta_{\mu}(j,j').
+\end{equation}
+
+Finally, we define the Hilbert space
+\begin{equation}
+    \mcH_{\xi}\equiv\left\{\varphi(x)=\int\frac{\rmd\mu(j)}{\sqrt{2\omega_j}}\tilde{\varphi}(j)e^{-i\omega_j t}\psi_j(x)\bigg\vert \tilde{\varphi}\in L^2\left(\mcJ, \rmd\mu(j)\right)\right\},
+\end{equation}
+of the solutions of Klein-Gordon equation.
+\begin{proposition}
+    The Hilbert space \(\mcH_{\xi}\) satisfies the necessary conditions for quantization.
+\end{proposition}
+\begin{proof}
+    show it!
+\end{proof}
+
+The quantum field theory constructed in this approach has a natural particle interpretation depending on the field state. We say that the state given by
+\begin{equation}
+    \frac{1}{\sqrt{n!}}\left(a^{\dagger}(\chi)\right)^n\ket{0},
+\end{equation}
+represents \(n\) particles in the mode \(\chi\in\mcH_{\xi}\). However, for non-stationary states, any intepretation of particles can be very problematic, hence we emphasize the remark that we are constructing a theory of fields, not particles.
+
+\section{Particle detector}
+
+Let \((\mcM,g_{ab})\) be a globally hyperbolic spacetime and static spacetime with Killing field \(\xi\) that will provide the background for the interaction of a two-level particle detector and a quantized scalar field \(\phi\). Let \(\Omega\) be the energetic gap between the detector' levels, then it's the Hamiltonian is defined as
+\begin{equation}
+    H_D=\Omega D^{\dagger}D,
+\end{equation}
+where \(D\ket{0}=D^{\dagger}\ket{1}=0\), \(D\ket{1}=\ket{0}\), \(D^{\dagger}\ket{0}=\ket{1}\) and \(\ket{0}\), \(\ket{1}\) are the ground and excited energy eigenstates. Moreover, the coupling between the detector and the field are described by the interaction Hamiltonian
+\begin{equation}
+    H_{\text{int}}(t)=\epsilon(t)\int_{\Sig_t}\rmd^3x\sqrt{-g}\hat{\phi}(x)\left[\psi(t,x)D+\overline{\psi}(t,x)D^{\dagger}\right],
+\end{equation}
+where \(\hat{\phi}(x)\) is the Klein-Gordon free field operator. The function \(\epsilon(t)\in\smooth_0(\mcM)\) is real and model the fact that the interaction happens in a finite proper time \(\Delta\) (the time that the detector is on) and, for a fixed \(t\in\bbR\), \(\psi(x)\in\smooth_0(\Sig_t)\) represents that the coupling is relevant only in a neighborhood of the detector's worldline. 
+
+The total Hamiltonian of the system is
+\begin{equation}
+    H=H_0+H_{\text{int}},
+\end{equation}
+where \(H_0=H_{KG}+H_D\) is the free system Hamiltonian. In the interaction picture, the state \(\ket{\Psi_t}\) that describes the system at an instant \(t\) can be written as
+\begin{equation}
+    \ket{\Psi_t}=T\exp{\left[-i\int_{-\infty}^t\rmd t'H_{\text{int}}^I(t')\right]}\ket{\Psi_{-\infty}},
+\end{equation}
+where \(T\) is the time-ordering operator and
+\begin{equation}
+    H_{\text{int}}^I=U_0^{\dagger}(t)H_{\text{int}}U_0,
+\end{equation}
+where \(U_0\) is the evolution operator of \(H_0\). Therefore, we have, for \(\ket{\Psi_{\infty}}\equiv\ket{\Psi_{t>\Delta}}\),
+\begin{subequations}
+    \begin{align}
+        \ket{\Psi_\infty}&=T\exp{\left[-i\int_{-{\infty}}^{\infty}\rmd t\int_{\Sig_t}\rmd^3x\sqrt{-g}\hat{\phi}(x)\epsilon(t)\left(\psi(t,x)U_0^{\dagger}DU_0+\overline{\psi}(t,x)U_0^{\dagger}DU_0\right)\right]}\ket{\Psi_{-\infty}}\\
+        &=T\exp{\left[\int_{\mcM}\rmd^4x\sqrt{-g}\hat{\phi}(x)\left(\epsilon(t)\psi(t,x)e^{-i\Omega t}D+\overline{\epsilon}(t)\overline{\psi}(t,x)e^{i\Omega t}D^{\dagger}\right)\right]}\ket{\Psi_{-\infty}}\\
+        &=T\exp{\left[-i\int_\mcM\rmd^4x\sqrt{-g}\hat{\phi}(x)\left(f(t,x)D+\overline{f}(t,x)D^{\dagger}\right)\right]}\ket{\Psi_{-\infty}},
+    \end{align}
+\end{subequations}
+where
+\begin{equation}
+    f(t,x)\equiv\epsilon(t)e^{-i\Omega t}\psi(t,x),
+\end{equation}
+is a complex function with compact support. Henceforth, we assume that the detector is following one orbit of \(\xi\), thus it follows the spatial parametrization, i.e., it has constant spatial coordiantes \(x\) in every \(\Sig_t\). As a consequence, our function \(\psi(t,x)\) is time idenpedent, since the position of the detector is constant (with respect to the notion provided by the Killing field) along the spacetime.
+
+Now, from first order in perturbation theory\sn{come back to this!}, we have
+\begin{equation}\label{eq:psi-infinity}
+    \ket{\Psi_{\infty}}=\left[\bbI-i\left(\hat{\phi}(f)D+\hat{\phi}^{\dagger}(f)D^{\dagger}\right)\right]\ket{\Psi_{-\infty}}.
+\end{equation}
+
+Suppose the the function \(\epsilon(t)\) vary slowly when compared to the frequency \(\Omega\) and that \(\Delta\gg\Omega^{-1}\). We claim that under this conditions, \(f\) is approximately a positive frequency function, i.e., \(KEf\cong Ef\) and \(KE\overline{f}\cong 0\). To show it, we decompose \(Ef\) in terms of positive and negative frequency modes, \(v_{\alpha}\) and \(\overline{v}_\alpha\),
+\begin{equation}
+    Ef=\int \rmd\mu(\alpha)\left(\kg{v_\alpha}{Ef}v_\alpha-\kg{\overline{v}_\alpha}{Ef}\overline{v}_\alpha\right),
+\end{equation}
+where \(v_{\alpha}\) are solutions of Klein-Gordon equation that satisfies \(\kg{v_{\alpha}}{v_{\alpha'}}=\delta_\mu(\alpha,\alpha')\). From the fact that \(v_\alpha\) is a positive frequency solution, it follows that is also eigenfunction of \(i\partial_t\) with eigenvalue \(\omega_\alpha>0\). Thus we can write
+\begin{equation}
+    v_{\alpha}=e^{-i\omega_\alpha t}\varphi_\alpha(x),
+\end{equation}
+where
+\begin{equation}
+    \mcK\varphi_{\alpha}=\omega_\alpha^2\varphi_\alpha,
+\end{equation}
+and \(\mcK\) is the same operator defined in \cref{eq:def-mcK}. Furthermore, from \cref{prop:E3}, we have
+\begin{subequations}
+    \begin{align}
+        &\kg{v_\alpha}{Ef}=i\int_\mcM\rmd^4x\sqrt{-g}f\overline{v}_\alpha\\
+        &\kg{\overline{v}_\alpha}{Ef}=i\int_\mcM\rmd^4x\sqrt{-g}fv_{\alpha}.
+    \end{align}
+\end{subequations}
+
+Using our approximation that \(\epsilon(t)\cong\epsilon=\text{cte}\) when the detector is turned on (and \(\epsilon(t)=0\) when it's turned off), we have
+\begin{subequations}
+    \begin{align}
+        \kg{\overline{v}_\alpha}{Ef}&=i\int_{\mcM}\rmd^4x\sqrt{-g}fv_\alpha\\
+        &=i\int_{-\infty}^\infty\rmd t\int_{\Sig_t}\rmd^3x\sqrt{-g}\epsilon(t)e^{-i\Omega t}\psi(x)e^{-i\omega_\alpha t}\varphi_\alpha(x)\\
+        &=i\epsilon\int_{-\frac{\Delta}{2}}^{\frac{\Delta }{2}}\rmd te^{-i(\Omega+\omega_\alpha) t}\int_{\Sig_t}\rmd^3x\sqrt{-g}\psi(x)\varphi_\alpha(x)\\
+        &=i\epsilon\gamma_\alpha\left(-\frac{1}{i(\Omega+\omega_\alpha)}e^{-i(\Omega+\omega_\alpha)t}\right)\bigg\vert_{-\frac{\Delta}{2}}^{\frac{\Delta}{2}}\\
+        &=2i\epsilon\gamma_\alpha\frac{\sin{\left[(\Omega+\omega_\alpha)\frac{\Delta}{2}\right]}}{\Omega+\omega_\alpha},
+    \end{align}
+\end{subequations}
+where
+\begin{equation}
+    \gamma_\alpha\equiv\int_{\Sig_t}\rmd^3x\sqrt{-g}\psi(x)\varphi_\alpha(x).
+\end{equation}
+
+Now, we have, from \cref{prop:sin-delta},
+\begin{equation}
+    \frac{\sin{\left[(\Omega+\omega_\alpha)\frac{\Delta}{2}\right]}}{\Omega+\omega_\alpha}\cong\pi\delta(\Omega+\omega_\alpha),
+\end{equation}
+when \(\Delta\gg\Omega^{-1}\). This express the fact that only the mode with frequency \(\omega_\alpha=-\Omega\) contributes for the negative frequency part, thus \(\kg{\overline{v}_\alpha}{Ef}\cong0\). Therefore, we have \(KEf\cong Ef\). 
+
+Similarly, consider,
+\begin{subequations}
+    \begin{align}
+        \kg{v_{\alpha}}{E\overline{f}}&=i\int_{\mcM}\rmd^4x\sqrt{-g}\overline{f}\overline{v}_{\alpha}\\
+        &=i\int_{-\infty}^{\infty}\rmd t\int_{\Sig_t}\rmd^3x\sqrt{-g}\overline{\epsilon}(t)e^{i\Omega t}\overline{\psi}(x)e^{i\omega_\alpha t}\overline{\varphi}(x)\\
+        &=i\epsilon\int_{-\frac{\Delta}{2}}^{\frac{\Delta}{2}}\rmd te^{i(\Omega+\omega_\alpha) t}\int_{\Sig_t}\rmd^3x\sqrt{-g}\overline{\psi}(x)\overline{\varphi}(x)\\
+        &=i\epsilon\overline{\gamma}_\alpha\left(\frac{1}{i(\Omega+\omega_\alpha)}e^{i(\Omega+\omega_\alpha)t}\right)\bigg\vert_{-\frac{\Delta}{2}}^{\frac{\Delta}{2}}\\
+        &=2i\epsilon\overline{\gamma}_\alpha\frac{\sin{\left[(\Omega+\omega_\alpha)\frac{\Delta}{2}\right]}}{\Omega+\omega_\alpha}.
+    \end{align}
+\end{subequations}
+
+The same analysis shows that \(KE\overline{f}\cong0\), i.e., the solutions \(E\overline{f}\) is approximately of negative frequency.
+
+Now, if we define
+\begin{equation}
+    \lambda\equiv-KEf,
+\end{equation}
+we have,
+\begin{equation}
+    \hat{\phi}(f)=ia\left(\overline{KE\overline{f}}\right)-ia^{\dagger}\left(KEf\right)\cong ia^{\dagger}(\lambda).
+\end{equation}
+
+Substituting in \cref{eq:psi-infinity},
+\begin{equation}\label{eq:detector-evolution}
+    \ket{\Psi_{\infty}}=\left(\bbI+a^{\dagger}(\lambda)D-a(\overline{\lambda})D^{\dagger}\right)\ket{\Psi_{-\infty}}.
+\end{equation}
+
+The expression above shows that the excitation and de-excitation of a detector following the orbits of temporal isometry is associated with the absorption and emission of particles naturally define by the observers comoving with the detector.
+
+In order to illustrate it, we shall present some examples.
+
+\begin{itemize}
+    \item Vacuum field:
+
+    Consider the initial state
+    \begin{equation}
+        \ket{\Psi_{-\infty}}=\ket{0}_\xi\otimes\left(\alpha\ket{0}+\beta\ket{1}\right),
+    \end{equation}
+    where \(\ket{0}_\xi\) is the vacuum associated with the temporal isometries. Substituting in \cref{eq:detector-evolution} and defining the normalized mode
+    \begin{equation}
+        \hat{\lambda}\equiv\frac{\lambda}{\lVert\lambda\rVert},
+    \end{equation}
+    we find
+    \begin{subequations}
+        \begin{align}
+            \ket{\Psi_\infty}&=\ket{\Psi_{-\infty}}+\beta a^{\dagger}(\lambda)\ket{0}_\xi\otimes D\ket{1}-\alpha a(\overline{\lambda})\ket{0}_\xi\otimes D^{\dagger}\ket{0}\\
+            &=\ket{0}_\xi\otimes\left(\alpha\ket{0}+\beta\ket{1}\right)+\beta\lVert\lambda\rVert\ket{\hat{\lambda}}\otimes\ket{0}.
+        \end{align}
+    \end{subequations}
+
+    Let \(\alpha=0\) and \(\beta=1\), then the probability of the detector de-excitate emitting a mode \(\hat{\lambda}\) is
+    \begin{subequations}
+        \begin{align}
+            P_{1\to0}&=\bra{\Psi_{\infty}}\bbI_{\phi}\otimes\ket{0}\bra{0}\ket{\Psi_{\infty}}\\
+            &=\lVert\lambda\rVert^2\\
+            &=\lVert KEf\rVert^2.
+        \end{align}
+    \end{subequations}
+
+    Similarly, if \(\alpha=1\) and \(\beta=0\), then
+    \begin{equation}
+        \ket{\Psi_\infty}=\ket{0}_\xi\otimes\ket{0},
+    \end{equation}
+    i.e., the detector remains in the ground state.
+
+    \item One particle field:
+    
+    Now, we take the initial state
+    \begin{equation}
+        \ket{\Psi_{-\infty}}=\ket{1}_{\chi}\otimes\left(\alpha\ket{0}+\beta\ket{1}\right),
+    \end{equation}
+    where \(\ket{1}_\chi\) is the state with one particle of the mode \(\chi\in\mcH_\xi\). Therefore,
+    \begin{equation}
+        \ket{\Psi_\infty}=\ket{1}_\chi\otimes\left(\alpha\ket{0}+\beta\ket{1}\right)+\beta\lVert\lambda\rVert\ket{1_\chi,1_{\hat{\lambda}}}\otimes\ket{0}-\alpha\lVert\lambda\rVert\kg{\hat{\lambda}}{\chi}\ket{0}_\xi\otimes\ket{1}.
+    \end{equation}
+
+    Let \(\alpha=1\) and \(\beta=0\), the probability of de-excitation, detecting \(\chi\), is
+    \begin{equation}
+        P_{0\to1}=\bra{\Psi_{\infty}}\bbI_{\phi}\otimes\ket{1}\bra{1}\ket{\Psi_\infty}=\lvert\kg{KEf}{\chi}\rvert^2.
+    \end{equation}
+
+    In the approximation \(KEf\cong Ef\), we have
+    \begin{equation}
+        P_{0\to1}=\lvert\kg{Ef}{\chi}\rvert^2=\left\lvert\int_{\mcM}\rmd^4x\sqrt{-g}\overline{\chi}(x)f(x)\right\rvert^2.
+    \end{equation}
+\end{itemize}

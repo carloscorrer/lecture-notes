@@ -1,6 +1,29 @@
 \appendix
 
+\chapter{Mathematical identities}
+
+This chapter intends to develop mathematical identities used throughout the text.
+\begin{proposition}\label{prop:sin-delta}
+    It holds
+    \begin{equation}
+        \lim_{\epsilon\to0^+}\int_{-\infty}^{\infty}\frac{\sin{\left(\frac{x}{\epsilon}\right)}}{\pi x}f(x)\rmd x=0,
+    \end{equation}
+    i.e.,
+    \begin{equation}
+        \lim_{\epsilon\to0^+}\frac{\sin{\left(\frac{x}{\epsilon}\right)}}{\pi x}=\delta(x).
+    \end{equation}
+\end{proposition}
+\vspace{1mm}
+\begin{center}
+    \psvectorian[scale=0.8]{103}
+\end{center}
+\let\clearpage
+\newpage
+\pagestyle{empty}\cleardoublepage
+
+
 \chapter{Fock space}
+\pagestyle{fancy}
 
 The symmetric Fock space is the Hilbert space used in the construction of our quantum field theory in curved spacetimes for a scalar field. However, it must be constructed from a existent Hilbert space, that physically can have the interpretation of the space of one particle.
 
