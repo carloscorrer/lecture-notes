@@ -1385,3 +1385,463 @@ In order to illustrate it, we shall present some examples.
         P_{0\to1}=\lvert\kg{Ef}{\chi}\rvert^2=\left\lvert\int_{\mcM}\rmd^4x\sqrt{-g}\overline{\chi}(x)f(x)\right\rvert^2.
     \end{equation}
 \end{itemize}
+
+\section{Bogoliubov transformations}
+Suppose we have a spacetime that is stationary in both past and future, hence it allows two constructions of quantum theories with natural particle interpretation. If we can find a transformation that relate this two constructions, we would have all the information about scattering, creation and annihilation of particles in this spacetime. Motivated by this, we shall study when such map exists and it's properties.
+\subsection*{On the existence of the map}
+
+Let \(\mu_1\) and \(\mu_2\) be two inner products used to construct the quantum field theory with operators \(\hat{\Omega}_1(\psi,\cdot)\) and \(\hat{\Omega}_2(\psi,\cdot)\). We wish to know if exists a unitary map \(S:\mcF_1\to\mcF_2\) such that
+\begin{equation}
+    S\hat{\Omega}_1(\psi,\cdot)S^{-1}=\hat{\Omega}_2(\psi,\cdot)\;\;\forall\psi\in\mcS,
+\end{equation}
+and if it exists, to obtain a explict expression for it. We separate the analysis in two cases\sn{from now on, there will be a lot of functional analysis. get back later!}.
+\begin{enumerate}
+    \item Exist \(c,c'>0\) such that
+    \begin{equation}
+        c\mu_1(\psi,\psi)\leq \mu_2(\psi,\psi)\leq c'\mu(\psi,\psi)\;\;\psi\in\mcS.
+    \end{equation}
+
+    \item Does not exist such \(c\) and \(c'\).
+\end{enumerate}
+
+Analysing the latter case, suppose, without loss of generality, that does not exist \(c>0\) such that \(c\mu_1(\psi,\psi)\leq\mu_2(\psi,\psi)\) for every \(\psi\in\mcS\). In other words, for every \(c>0\), exists \(\psi\in\mcS\) such that \(c\mu_1(\psi,\psi)>\mu_2(\psi,\psi)\). Notice that we can always take \(\psi\) with unity \(\mu_1\)-norm:
+\begin{equation}
+    c\mu_1(\psi,\psi)>\mu_2(\psi,\psi)\implies c\frac{\mu_1(\psi,\psi)}{\mu_1(\psi,\psi)}>\frac{\mu_2(\psi,\psi)}{\mu_1(\psi,\psi)},
+\end{equation}
+then,
+\begin{equation}
+    c=c\mu_1\left(\frac{\psi}{\sqrt{\mu_1(\psi,\psi)}},\frac{\psi}{\sqrt{\mu_1(\psi,\psi)}}\right)>\mu_2\left(\frac{\psi}{\sqrt{\mu_1(\psi,\psi)}},\frac{\psi}{\sqrt{\mu_1(\psi,\psi)}}\right).
+\end{equation}
+
+For \(c=\frac{1}{n}\), we have a sequence \((\psi_n)_{n\in\bbN}\) such hat \(\mu_1(\psi_n,\psi_n)=1\), but \(\mu_2(\psi_n,\psi_n)\to0\). As a consequence, in \(\mcF_2\), \(e^{i\hat{\Omega}_2(\psi_n,\cdot)}-\bbI_2\) strongly converges to zero, i.e., \(\forall\ket{\varphi}_2\in\mcF_2\),
+\begin{equation}
+    \left\lVert e^{i\hat{\Omega}_2(\psi_n,\cdot)} \ket{\varphi}_2-\ket{\varphi}_2\right\rVert\to 0.
+\end{equation}
+
+Meanwhile, \(e^{i\hat{\Omega}_1(\psi_n,\cdot)}\ket{0}_1-\ket{0}_1\) does not converge. Therefore, any map \(S\), takes \(S\ket{0}_1\) to a state that does not respect the convergence, hence \(S\) cannot exists\sn{the functional analysis crap ended!}.
+
+Returning to the first case, we conclude that both norms are equivalent\sn{why?}. Thereby, completing \(\mcS\) with respect to any of the inner products result in the same completed space \(\mcS_\mu\). 
+
+Let \(\mcH_1,\mcH_2\subset\mcS_\mu^\bbC\) be the one-particle state correspondent to each of the constructions. We equip \(\mcS_\mu^\bbC\) with the Klein-Gordon's inner product, \(\kg{\psi_1}{\psi_2}_1\equiv 2\mu_1(\overline{\psi}_1,\psi_2)\) and define the induced projections \(K_1:\mcS_{\mu}^\bbC\to\mcH_1\) and \(\overline{K}_1:\mcS_\mu^\bbC\to\overline{\mcH}_1\). The same procedure follows to define the projections \(K_2:\mcS_{\mu}^\bbC\to\mcH_2\) and \(\overline{K}_2:\mcS_\mu^\bbC\to\overline{\mcH}_2\). Finally, we have equivalent theories if exists a unitary map \(S:\mcF_1\to\mcF_2\) such that
+\begin{equation}\label{eq:unitary-S1}
+    S\left[ia_1\left(\overline{K}_1\psi\right)-ia_1^\dagger\left(K_1\psi\right)\right]S^{-1}=ia_2\left(\overline{K}_2\psi\right)-ia_2^\dagger\left(K_2\psi\right),\;\;\forall\psi\in\mcS.
+\end{equation}
+
+The equation extends to \(\mcS^\bbC\) by (complex) linearity and to \(\mcS_\mu^\bbC\) by continuity. Now, we define the maps \(A:\mcH_2\to\mcH_1\) and \(B:\mcH_2\to\overline{\mcH}_1\) as the restrictions of \(K_1\) and \(\overline{K}_1\) to \(\mcH_2\). Similarly, we have the restrictions of \(K_2\) and \(\overline{K}_2\) to \(\mcH_1\) defined as the operators \(C:\mcH_1\to\mcH_2\) and \(D:\mcH_1\to\overline{\mcH}_2\)\sn{add a diagram!}.
+
+Now, take \(\psi\in\overline{\mcH}_1\) and define \(\chi\equiv\overline{\psi}\in\mcH_1\). Notice that \(K_1\psi=0\) and \(\overline{K}_1\psi=\psi\). Then, from \cref{eq:unitary-S1}, we have
+\begin{subequations}\label{eq:cond-S}
+    \begin{align}
+        Sa_1(\psi)S^{-1}&=a_2\left(\overline{K_2\overline{\psi}}\right)-a^{\dagger}_2\left(\overline{\overline{K}_2\overline{\psi}}\right)\\
+        Sa_1(\overline{\chi})S^{-1}&=a_2\left(\overline{C\chi}\right)-a_2^{\dagger}\left(\overline{D\chi}\right).
+    \end{align}
+\end{subequations}
+
+\subsection*{Properties of the operators}
+Since the norms in \(\mcH_1\) and \(\mcH_2\) are equivalent, we have the the operators \(A,\,B,\,C\) and \(D\) are bounded\sn{why?}. We have many properties concerning these operators. For example, take \(\psi,\chi\in\mcH_2\), then
+\begin{subequations}
+    \begin{align}
+        \kg{\psi}{\chi}_{\mcH_2}&=-i\Omega(\overline{\psi},\chi)\\
+        &=-i\Omega\left(\overline{K_1\psi+\overline{K}_1\psi},K_1\chi+\overline{K}_1\chi\right)\\
+        &=-i\Omega\left(\overline{K_1\psi},K_1\chi\right)-i\Omega\left(\overline{\overline{K}_1\psi},\overline{K}_1\chi\right)\\
+        &=\kg{K_1\psi}{K_1\chi}_{\mcH_1}+i\Omega\left(\overline{K}_1\chi,\overline{\overline{K}_1\psi}\right)\\
+        &=\kg{K_1\psi}{K_1\chi}_{\mcH_1}+i\Omega\left(\overline{K_1\overline{\chi}},K_1\overline{\psi}\right)\\
+        &=\kg{K_1\psi}{K_1\chi}_{\mcH_1}-\kg{K_1\overline{\chi}}{K_1\overline{\psi}}_{\mcH_1}\\
+        &=\kg{K_1\psi}{K_1\chi}_{\mcH_1}-\kg{\overline{K}_1\psi}{\overline{K}\chi}_{\overline{\mcH}_1}\\
+        &=\kg{A\psi}{A\chi}_{\mcH_1}-\kg{B\psi}{B\chi}_{\overline{\mcH}_1}\\
+        &=\kg{\psi}{A^\dagger A\chi}_{\mcH_2}-\kg{\psi}{B^{\dagger} B\chi}_{\mcH_2},
+    \end{align}
+\end{subequations}
+therefore,
+\begin{equation}\label{eq:condAB1}
+    A^{\dagger}A-B^\dagger B=\bbI.
+\end{equation}
+
+Now, for any operator \(\mcO:\mcH_1\to\mcH_2\), we define its conjugated \(\overline{\mcO}:\overline{\mcH}_1\to\overline{\mcH}_2\) as
+\begin{equation}
+    \overline{\mcO}v=\overline{\mcO\overline{v}},\;\;\forall v\in\overline{\mcH}_1.
+\end{equation}
+With this in mind, if we take \(\psi\in\overline{\mcH}_2\) and \(\chi\in\mcH_2\), then
+\begin{subequations}
+    \begin{align}
+        0&=-i\Omega\left(\overline{\psi},\chi\right)\\
+        &=\kg{K_1\psi}{K_1\chi}_{\mcH_1}-\kg{\overline{K}_1\psi}{\overline{K}_1\chi}_{\overline{\mcH}_1}\\
+        &=\kg{\overline{B}\psi}{A\chi}_{\mcH_1}-\kg{\overline{A}\psi}{B\chi}_{\overline{\mcH}_1}\\
+        &=\kg{A^\dagger\overline{B}\psi}{\chi}_{\mcH_2}-\kg{B^{\dagger}\overline{A}\psi}{\chi}_{\mcH_2},
+    \end{align}
+\end{subequations}
+hence,
+\begin{equation}\label{eq:condAB2}
+    A^{\dagger}\overline{B}=B^{\dagger}\overline{A}.
+\end{equation}
+
+The last both calculations with 1 exchanged by 2, leads to
+\begin{equation}\label{eq:condCD1}
+    C^{\dagger}C-D^{\dagger}D=\bbI,
+\end{equation}
+and
+\begin{equation}\label{eq:condCD2}
+    C^{\dagger}\overline{D}=D^{\dagger}\overline{C}.
+\end{equation}
+
+Finally, for \(\psi\in\mcH_1\), \(\chi\in\mcH_2\), we have
+\begin{subequations}
+    \begin{align}
+        \kg{\psi}{A\chi}_{\mcH_1}&=-i\Omega\left(\overline{\psi},A\chi\right)\\
+        &=-i\Omega\left(\overline{\psi},K_1\chi\right)\\
+        &=-i\Omega\left(\overline{\psi},K_1\chi+\overline{K}_1\chi\right)\\
+        &=-i\Omega\left(\overline{\psi},\chi\right)\\
+        &=-i\Omega\left(\overline{K_2\psi+\overline{K}_2\psi},\chi\right)\\
+        &=-i\Omega\left(\overline{K_2\psi},\chi\right)\\
+        &=\kg{K_2\psi}{\chi}_{\mcH_2}\\
+        &=\kg{C\psi}{\chi}_{\mcH_2}\\
+        &=\kg{\psi}{C^{\dagger}\chi}_{\mcH_1},
+    \end{align}
+\end{subequations}
+thus,
+\begin{equation}\label{eq:condAC}
+    A=C^\dagger.
+\end{equation}
+
+Similarly, if we take \(\psi\in\overline{\mcH}_1\) and \(\chi\in\mcH_2\), then
+\begin{subequations}
+    \begin{align}
+        \kg{\psi}{B\chi}_{\overline{\mcH}_1}&=-i\Omega\left(\overline{\psi},B\chi\right)\\
+        &=-i\Omega\left(\overline{\psi},\overline{K}_1\chi\right)\\
+        &=-i\Omega\left(\overline{\psi},K_1\chi+\overline{K}_1\chi\right)\\
+        &=-i\Omega\left(\overline{\psi},\chi\right)\\
+        &=-i\Omega\left(\overline{\psi},\chi\right)\\
+        &=-i\Omega\left(\overline{K_2\psi+\overline{K}_2\psi},\chi\right)\\
+        &=-i\Omega\left(\overline{K_2\psi},\chi\right)\\
+        &=\kg{K_2\psi}{\chi}_{\mcH_2}\\
+        &=\kg{\overline{D}\psi}{\chi}_{\mcH_2}\\
+        &=-\kg{\psi}{\overline{D}^{\dagger}\chi}_{\mcH_1},
+    \end{align}
+\end{subequations}
+hence,
+\begin{equation}\label{eq:condBD}
+    B=-\overline{D}^{\dagger}.
+\end{equation}
+
+The propertires \cref{eq:condAB1,eq:condCD1} implies\sn{andre notes!} that \(A^{-1}\) and \(C^{-1}\) exist as bounded operators. An unitary map \(S\) that satisfies \cref{eq:cond-S} and such that the operators \(A,\,B,\,C\) and \(D\) satisfies the properties \cref{eq:condAB1,eq:condAB2,eq:condCD1,eq:condCD2,eq:condAC,eq:condBD} is called a Bogoliubov transformation.
+
+\subsection*{Explicit expression}
+Suppose that this transformation exists and we shall try to find an expression for it. We want to find \(\Psi_0\in\mcF_2\) such that
+\begin{equation}
+    \Psi_0=S\ket{0}_1.
+\end{equation}
+
+The most general expression for \(\Psi_0\) is
+\begin{equation}
+    \Psi_0=c\left(1,\psi^{a_1},\psi^{a_1a_2},\dots\right).
+\end{equation}
+
+Take \(\xi\in\mcH_2\) and define \(\chi=C^{-1}\xi\). Aplying the unitary mp in this state, we have
+\begin{subequations}
+    \begin{align}
+        Sa_1\left(\overline{\chi}\right)S^{-1}\Psi_0&=\left[a_2\left(\overline{C\chi}\right)-a_2^{\dagger}\left(\overline{D\chi}\right)\right]\Psi_0\\
+        Sa_1\left(\overline{\chi}\right)\ket{0}_1&=\left[a_2\left(\overline{\xi}\right)-a_2^{\dagger}\left(\overline{DC^{-1}\xi}\right)\right]\Psi_0\\
+        0&=\left[a_2\left(\overline{\xi}\right)-a_2^{\dagger}\left(E\overline{\xi}\right)\right]\Psi_0,
+    \end{align}
+\end{subequations}
+i.e.,
+\begin{equation}
+    a_2\left(\overline{\xi}\right)\Psi_0=a^\dagger_2\left(E\overline{\xi}\right),
+\end{equation}
+where \(E:\overline{\mcH}_2\to\mcH_2\) is defined as 
+\begin{equation}
+    E\equiv\overline{D}\overline{C}^{-1}.
+\end{equation}
+
+From property expressed in \cref{eq:condCD2}, we have
+\begin{equation}
+    C^{\dagger}\overline{D}\overline{C}^{-1}=D^{\dagger}\implies\overline{D}\overline{C}^{-1}=\left(C^{\dagger}\right)^{-1}D^{\dagger}\implies E=\left(DC^{-1}\right)=\overline{E}^{\dagger},
+\end{equation}
+i.e., \(E\) is symmetric. From the definitions of creation and annihilation operators, we have
+\begin{equation}
+    \begin{cases}
+        \overline{\xi}_{a_1}\psi^{a_1}=0\\
+        \sqrt{2}\overline{\xi}_{a_1}\psi^{a_1a_2}=\left(E\overline{\xi}\right)^{a_2}\\
+        \sqrt{3}\overline{\xi}_{a_1}\psi^{a_1a_2a_3}=\sqrt{2}\left(E\overline{\xi}\right)^{(a_2}\psi^{a_3)}\\
+        \sqrt{4}\overline{\xi}_{a_1}\psi^{a_1a_2a_3a_4}=\sqrt{3}\left(E\overline{\xi}\right)^{(a_2}\psi^{a_3a_4)}\\
+        \hspace{3cm}\vdots
+    \end{cases}
+\end{equation}
+
+Since these relations are true for any \(\xi\), then \(\psi^a=0\). From that, follows the any odd rank tensor must vanish as well. Abusing notation considering that \(E\in\overline{\mcH}_2\otimes\overline{\mcH}_2\), we have
+\begin{equation}
+    \psi^{a_1a_2}=\frac{1}{\sqrt{2}}E^{a_1a_2}.
+\end{equation}
+\begin{proposition}
+    The mapped ground state is given by
+    \begin{equation}
+        \Psi_0=c\left(1,0,\sqrt{\frac{1}{2}}E^{a_1a_2},0,\dots,\sqrt{\frac{(n-1)!!}{n!!}}E^{(a_1a_2}\dots E^{a_{n-1}a_n)},\dots\right),
+    \end{equation}
+    where \(n\) is an even number.
+\end{proposition}
+\begin{proof}
+    show it!
+\end{proof}
+
+Notice that we can always choose \(c\) such that \(\lVert\Psi_0\rVert=1\). Our assumption to hold, i.e., \(\Psi_0=S\ket{0}_1\) exists, if, and only if,
+\begin{equation}
+    \text{Tr}\left(E^{\dagger}E\right)<\infty.
+\end{equation}
+
+Since \(C\) and \(C^{-1}\) are bounded\sn{check all that follows!}, it is equivalent to
+\begin{equation}
+    \text{Tr}\left(D^{\dagger}D\right)<\infty,
+\end{equation}
+that can also be expressed as 
+\begin{equation}
+    \text{Tr}\left(B^{\dagger}B\right)<\infty.
+\end{equation}
+
+Now, we can consider the action on a 1-particle state considering the adjoint of \cref{eq:cond-S},
+\begin{subequations}
+    \begin{align}
+        Sa_1^{\dagger}\left(\chi\right)S^{-1}&=a_2^\dagger\left(C\chi\right)-a_2\left(D\chi\right)\\
+        Sa_1^\dagger(\chi)\ket{0}_1&=\left[a_2^\dagger\left(C\chi\right)-a_2\left(D\chi\right)\right]\Psi_0.
+    \end{align}
+\end{subequations}
+
+Henceforth, by induction we extend the action of \(S\) to any element of \(\mcF_1\).
+\\
+\vspace{1mm}
+\begin{center}
+    \psvectorian[scale=0.8]{103}
+\end{center}
+
+\chapter{Unruh effect}
+We shall explore our construction of quantum field theory in stationary spacetimes returning to Minkowski spacetime. There we find a striking feature that explicitate the fact that particle concept is observer dependent, known as Unruh effect. Moreover, we generalize this effect to general spacetimes that possess a bifurcate Killing horizon.
+
+\section{Unruh effect in Minkowski}
+\subsection*{Setting up the background}
+First, in Minkowski spacetime, let \(\xi^a\) be the Killing field associated with time translation attributed by a family of inertial observers. We denote the vacuum of this construction as Minkowski vacuum, \(\ket{0}_M\).
+
+Furthermore, there other isometries avaiable, for exemple the one parameter group of Lorentz's boost, with Killing field
+\begin{equation}
+    \chi^a=a\left[x\left(\partial_t\right)^a+t\left(\partial_x\right)^a\right],
+\end{equation}
+where \(a\) is an arbitrary constant and \(x\) and \(t\) are global coordinates. We can divide the spacetime in four regions whose boundaries are the surfaces where \(\chi^a\) is null\sn{diagrama!}.
+
+Take a orbit of \(\chi^a\) such that \(\chi^a\chi_a=-1\), then \(\chi^a\) can be interpreted as the 4-velocity of a family of observers. Therefore, the 4-acceleration is
+\begin{subequations}
+    \begin{align}
+        \alpha^a&=\chi^b\nabla_b\chi^a\\
+        &=a^2\left(x\diffp{}{t}+t\diffp{}{x}\right)\left[x\left(\partial_t\right)^a+t\left(\partial_x\right)\right]\\
+        &=a^2\left[t\left(\partial_t\right)^a+x\left(\partial_x\right)^a\right].
+    \end{align}
+\end{subequations}
+
+Since 
+\begin{equation}
+    \chi^a\chi_a=a^2\left(-x^2+t^2\right)=-1,
+\end{equation}
+then,
+\begin{equation}
+    \alpha^a\alpha_a=a^4\left(-t^2+x^2\right)=a^2.
+\end{equation}
+
+Thus, we interpret this family of observers as being uniformly accelerated that move along the orbits of \(\chi^a\). Let \(\Sig\) be a Cauchy surface, we denote by \(\Sig_\text{I}\) and \(\Sig_\text{II}\) its restriction to the regions I and II respectively, hence each region is globally hyperbolic. Thereby, we construct our theory picking the one-particle state to be \(\mcH_2=\mcH_\text{I}\oplus\mcH_\text{II}\), in which \(\mcH_\text{I}\) is obtained by the usual construction in region I with the notion arising from \(\chi^a\) and, similarly, \(\mcH_\text{II}\) is counstructed with the aid of \(-\chi^a\) (that is future directed) in region II.
+
+Now, we want to represent Minkowski vacuum in the Fock space
+\begin{equation}
+    \mcF_S\left(\mcH_2\right)\cong\mcF_S\left(\mcH_\text{I}\right)\otimes\mcF_S\left(\mcH_\text{II}\right).
+\end{equation}
+The vacuum notion generated by this construction is called Rindler vacuum,\(\ket{0}_R\). Since accelerated observers, for example, in region I does not have acess to region II, we specifically want to express \(\ket{0}_M\) in \(\mcF_S(\mcH_\text{I})\). To do it, we shall find an \(S\) matrix, \(S:\mcF_S(\mcH_1)\to\mcF_S(\mcH_2)\), apply it on \(\ket{0}_M\) and trace out the states of \(\mcH_2\).
+
+Before we perform these calculations, the following results simplify the calculations. We define the retarded and advanced null coordinates, \(U\) and \(V\), as
+\begin{equation}
+    U=t-x\hspace{4cm}V=t+x.
+\end{equation}
+We claim that, in the horizon \(\mfh_A\) (\(\mfh_B\)), solution is of positive frequency with respect to the retarded (advanced) time \(V\) (\(U\)) if, and only if, it is of positive frequency with respect to the inertial time \(t\). Indeed, take \(\varphi\in\mcH_1\), i.e., of positive frequency, then
+\begin{subequations}
+    \begin{align}
+        \varphi&=\int\frac{\rmd^3k}{(2\pi)^3}\tilde{\varphi}(k)\exp{\left[i\left(-\omega_k t+k_xx+\vec{x}_\perp\cdot\vec{k}_\perp\right)\right]}\\
+        &=\int\frac{\rmd^3k}{(2\pi)^3}\tilde{\varphi}(k)\exp{\left[i\left(-\omega_k\frac{U+V}{2}+k_x\frac{V-U}{2}+\vec{x}_\perp\cdot\vec{k}_\perp\right)\right]},
+    \end{align}
+\end{subequations}
+where \(\vec{x}_\perp\cdot\vec{k}_\perp=k_yy+k_zz\). On \(\mfh_A\), \(U=0\), then
+\begin{equation}
+    \varphi=\int\frac{\rmd^3k}{(2\pi)^3}\tilde{\varphi}(k)\exp{\left[i\left(-\frac{\omega_k-k_x}{2}V+\vec{x}_\perp\cdot\vec{k}_\perp\right)\right]},
+\end{equation}
+since \(\omega_k=\sqrt{k_x+k_\perp^2+m^2}>k_x\), then a positive frequency solution with respect to \(t\) is also of positive frequency with respect to \(V\) on \(\mfh_A\). Similarly, in \(\mfh_B\), \(V=0\), then
+\begin{equation}
+    \varphi=\int\frac{\rmd^3k}{(2\pi)^3}\tilde{\varphi}(k)\exp{\left[i\left(-\frac{\omega_k+k_x}{2}U+\vec{x}_\perp\cdot\vec{k}_\perp\right)\right]},
+\end{equation}
+hence a positive frequency solution with respect to \(t\) is also of positive frequency with respect to \(U\) on \(\mfh_B\).
+
+Moreover, any solution in Minkowski spacetime is uniquily determined by its value on \(\mfh_A\cup\mfh_B\). In other words, the dependence domain of this union satisfies \(D\left(\mfh_A\cup\mfh_B\right)=\mcM\).
+
+Finally, consider the retarded Killing time \(v\) such that \(\chi^a\nabla_a v=1\). In terms of the intertial retarded and accelerated times, we have
+\begin{subequations}
+    \begin{align}
+        \chi^a&=a\left[x\left(\partial_t\right)+t\left(\partial_x\right)^a\right]\\
+        &=\frac{a}{2}\left[(V-U)\left(\partial_U+\partial_V\right)^a+(U+V)\left(\partial_V-\partial_U\right)^a\right]\\
+        &=a\left[-U\left(\partial_U\right)^a+V\left(\partial_V\right)^a\right].
+    \end{align}
+\end{subequations}
+Thus, in \(\mfh_A\), we have
+\begin{subequations}
+    \begin{align}
+        1&=\chi^a\nabla_a v\\
+        &=a\left(-U\diffp{v}{U}+V\diffp{v}{V}\right)\\
+        &=aV\diffp{v}{V},
+    \end{align}
+\end{subequations}
+hence,
+\begin{equation}
+    v=\frac{1}{a}\ln{\lvert V\rvert}.
+\end{equation}
+
+Similarly, for the advanced Killing time \(u\) in \(\mfh_B\), we have
+\begin{subequations}
+    \begin{align}
+        1&=\chi^a\nabla_au\\
+        &=-aU\diffp{u}{U},
+    \end{align}
+\end{subequations}
+thus,
+\begin{equation}
+    u=-\frac{1}{a}\ln{\lvert U\rvert}.
+\end{equation}
+
+From these remarks, we can look at positive frequency solutions in \(\mfh_A\cup\mfh_B\) and decompose them as function of the inertial time, we take the Fourier transform with respect to \(V\) (\(U\)) in \(\mfh_A\) \((\mfh_B)\). This way, we avoid an explicit solutions of Klein-Gordon equation in different coordinate systems.
+
+\subsection*{Effective calculation}
+Let \(\psi^{\text{I}}_\omega\) be a solution of Klein-Gordon equation that vanishes in region II and oscillate harmonically with frequency \(\omega>0\) (with respect to the accelerated Killing time) in region I. A solution of this type has divergent norm, however it can be helped by putting it into a suitable wavepacket. We denote the restriction of \(\psi^{\text{I}}_\omega\) to \(\mfh_A\) as
+\begin{equation}
+    f^{\text{I}}_\omega(V,y,z)=
+    \begin{cases}
+        h(y,z)e^{-i\omega v}&,\;\;V>0\\
+        0&,\;\;V<0
+    \end{cases}.
+\end{equation}
+
+Taking the Fourier transform with respect to \(V\), whose associated frequency we shall denote by \(\sig\), we have
+\begin{subequations}
+    \begin{align}
+        \hat{f}^{\text{I}}_\omega(\sig,y,z)&=\int_{-\infty}^{\infty}\rmd V\psi^{\text{I}}_\omega(V,y,z)e^{i\sig V}\\
+        &=\int_0^\infty e^{i\sig V}e^{-i\frac{\omega}{a}\ln{\lvert V\rvert}}h(y,z)\\
+        &\equiv h(y,z)I(\sig)
+    \end{align}
+\end{subequations}
+
+Now, suppose that \(\sig>0\) and that \(\log{}\) denotes the principal branch of logarithm. If we make \(V=iy\), and use the integration path\sn{imaginary path}, we have
+\begin{subequations}
+    \begin{align}
+        I(\sig)&=\int_0^\infty\rmd Ve^{i\sig V}e^{-i\frac{\omega}{a}\ln{V}}\\
+        &=i\int_0^{-i\infty}\rmd ye^{-\sig y}e^{-i\frac{\omega}{a}\log{(iy)}}\\
+        &=ie^{-i\frac{\omega}{a}\log{\left(e^{i\frac{\pi}{2}}\right)}}\int_0^{-i\infty}\rmd ye^{-\sig y}e^{-i\frac{\omega}{a}\log{y}}\\
+        &=ie^{\frac{\pi\omega}{2a}}\int_0^{\infty}\rmd ye^{-\sig y}e^{-i\frac{\omega}{a}\log{y}},
+    \end{align}
+\end{subequations}
+where in the last passage we used the residue theorem to exchange the former integral for two (omitted) integrals around paths with arbitraly small and large radius and the latter one.
+
+Similarly, if we take \(V=-iy\)\sn{imaginary path},
+\begin{subequations}
+    \begin{align}
+        I(-\sig)&=\int_0^{\infty}\rmd Ve^{-i\sig V}e^{-i\frac{\omega}{a}\ln{V}}\\
+        &=-i\int_0^{i\infty}\rmd ye^{-\sig y}e^{-i\frac{\omega}{a}\log{(-iy)}}\\
+        &=-ie^{-i\frac{\omega}{a}\log{(-i)}}\int_0^{i\infty}\rmd ye^{-\sig y}e^{-i\frac{\omega}{a}\log{y}}\\
+        &=-ie^{-\frac{\pi\omega}{2a}}.
+    \end{align}
+\end{subequations}
+
+Therefore, we conclude that
+\begin{equation}
+    \hat{f}^{\text{I}}_\omega(-\sig,y,z)=-e^{\frac{\pi\omega}{a}}\hat{f}^{\text{I}}_\omega(\sig,y,z),\;\;\forall\sig>0.
+\end{equation}
+
+Now, to study region II, notice that the reflection transformation \((t,x,y,z)\to(-t,-x,y,z)\) maps region I in region II. As a consequence, it maps solutions of \(\mcH_\text{I}\) in \(\overline{\mcH}_{\text{II}}\). Since \(\mcH_{\text{II}}\) is obtained with \(-\chi^a\), the restriction to \(\mfh_A\) of the image of \(\psi^{\text{I}}_\omega\) has the form
+\begin{equation}
+    \overline{f}^{\text{II}}_\omega(V,y,z)=
+    \begin{cases}
+        0,\;\;&V>0\\
+        h(y,z)e^{-i\omega v},\;\;&V<0
+    \end{cases}.
+\end{equation}
+
+We obtained \(\overline{f}^{\text{II}}_\omega\) by a time reflection of \(f^{\text{I}}_\omega\), hence
+\begin{equation}
+    \hat{\overline{f}}^{\text{II}}_\omega(\sig,y,z)=\hat{f}^{\text{I}}_\omega(-\sig,y,z).
+\end{equation}
+
+Inspired by the last results obtained, we define
+\begin{equation}
+    F_\omega\equiv f^{\text{I}}_\omega+e^{-\frac{\pi\omega}{a}}\overline{f}^{\text{II}}_\omega.
+\end{equation}
+
+Notice that in \(\mfh_A\), for \(\sig>0\), we have
+\begin{subequations}
+    \begin{align}
+        \hat{F}_\omega(-\sig,y,z)&=\hat{f}^{\text{I}}_\omega(-\sig,y,z)+e^{-\frac{\pi\omega}{a}}\hat{\overline{f}}^{\text{II}}_\omega(-\sig,y,z)\\
+        &=-e^{-\frac{\pi\omega}{a}}\hat{f}^{\text{I}}_\omega(\sig,y,z)+e^{-\frac{\pi\omega}{a}}\hat{f}^{\text{I}}_\omega(\sig,y,z)\\
+        &=0,
+    \end{align}
+\end{subequations}
+i.e., \(F_\omega\) is a solution of positive frequency with respect to the inertial time\sn{verify what happens in \(\mfh_B\)}.
+
+Henceforth, in order to solve the divergence problem, we take an orthonormal basis \(\{\psi^{\text{I}}_i\}\) of \(\mcH_{\text{I}}\) formed of thin peaks around \(\omega_i>0\). From the reflection transformation, we get an associated basis \(\{\psi^{\text{II}}_i\}\) of \(\mcH_{\text{II}}\). Therefore,
+\begin{equation}
+    \Psi_i=\psi^{\text{I}}_i+e^{-\frac{\pi\omega_i}{a}}\overline{\psi}^\text{II}_i,
+\end{equation}
+is a positive frequency solution with respect to the inertial time, i.e., \(\Psi_i\in\mcH_1\). Similarly, we also have
+\begin{equation}
+    \Psi_i'=\psi^{\text{II}}_i+e^{-\frac{\pi\omega_i}{a}}\overline{\psi}^\text{I}_i\in\mcH_1.
+\end{equation}
+
+Now, we can calculate the \(S\) matrix. Remember that \(C:\mcH_1\to\mcH_2\) and \(D:\mcH_1\to\overline{\mcH}_2\), then
+\begin{subequations}
+    \begin{align}
+        &C\Psi_i=\psi^\text{I}_i\hspace{3.15cm}C\Psi'_i=\psi^{\text{II}}_i\\
+        &D\Psi_i=e^{-\frac{\pi\omega_i}{a}}\overline{\psi}^{\text{II}}_i\hspace{2cm}D\Psi_i'=e^{-\frac{\pi\omega_i}{a}}\overline{\psi}^\text{I}_i.
+    \end{align}
+\end{subequations}
+
+Therefore, we have
+\begin{equation}\label{eq:action-E}
+    DC^{-1}\psi^{\text{I}}_i=e^{-\frac{\pi\omega_i}{a}}\hspace{1cm}\text{and}\hspace*{1cm}DC^{-1}\overline{\psi}^{\text{II}}_i=e^{-\frac{\pi\omega_i}{a}}\overline{\psi}^{\text{I}}_i.
+\end{equation}
+
+Furthermore, since \(\mcH_2=\mcH_\text{I}\oplus\mcH_\text{II}\), \(\{\psi_i^\text{I}\}\) and \(\{\psi_i^\text{II}\}\) generate \(\mcH_2\), thus the action of the operator \(E=\overline{DC}^{-1}\) is completely defined by \cref{eq:action-E}. The 2-particle state correspondent to this operator is
+\begin{equation}\label{eq:E-unruh}
+    E^{ab}=\sum_i2e^{-\frac{\pi\omega_i}{a}}\left(\psi^{\text{I}}_i\right)^{(a}\left(\psi^{\text{II}}_i\right)^{b)}.
+\end{equation}
+\begin{proposition}
+    The \(S\) matrix obtained from \cref{eq:E-unruh} acting on Minkowski vacuum is
+    \begin{equation}
+        S\ket{0}_M=\prod_j\left(\sum_{n=0}^{\infty}e^{-\frac{\pi n\omega_j}{a}}\ket{n_j}_\text{I}\otimes\ket{n_j}_\text{II}\right),
+    \end{equation}
+    where \(\ket{n_j}_\text{I}\) represents a state of \(\mcF_S(\mcH_\text{I})\) with \(n\) particles in the mode \(\psi^\text{I}_i\) and the same holds for \(\ket{n_j}_\text{II}\).
+\end{proposition}
+\begin{proof}
+    will show it.
+\end{proof}
+
+The density matrix of the state mapped by the vacuum is
+\begin{equation}
+    \rho=\prod_{i,j}\left(\sum_{n,m}e^{-\frac{\pi n\omega_i}{a}}e^{-\frac{\pi m\omega_j}{a}}\ket{n_{i\text{I}}n_{i\text{II}}}\bra{m_{j\text{I}}m_{j\text{II}}}\right).
+\end{equation}
+Tracing out the region II, we get
+\begin{subequations}\label{eq:densityI}
+    \begin{align}
+        \rho^{\text{I}}&=\text{Tr}_{\text{II}}\rho\\
+        &=\prod_{i,j,k}\left(\sum_{n,m,\ell}e^{-\frac{\pi n\omega_i}{a}}e^{-\frac{\pi m\omega_j}{a}}\bra{\ell_{k\text{II}}}\ket{n_{i\text{II}}}\bra{m_{i\text{II}}}\ket{\ell_{k\text{II}}}\ket{n_i}_\text{I}\bra{m_j}_{\text{I}}\right)\\
+        &=\prod_j\left(\sum_n e^{-\frac{2\pi n\omega_j}{a}}\ket{n_j}_\text{I}\bra{n_j}_{\text{I}}\right).
+    \end{align}
+\end{subequations}
+
+An accelerated obsercer attribute energy \(n\omega_j\) to a state \(\ket{n_j}_\text{I}\), then, if we compare \cref{eq:densityI} with a thermal state
+\begin{equation}
+    \rho_T=e^{-\frac{H_T}{T}},
+\end{equation}
+we conclude that the accelerated observers that follows the orbit of \(\chi^a\) interpret the Minkowski vacuum as thermal bath of particles at a temperature
+\begin{equation}
+    T=\frac{a}{2\pi}=\frac{a\hbar}{2\pi k_Bc}.
+\end{equation}
+
+\begin{remark}
+    Generalize for curved space.
+\end{remark}
